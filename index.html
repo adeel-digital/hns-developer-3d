@@ -3,31 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H&S Developer | Premium 3D</title>
+    <title>H&S Developer | High-End Construction & Architecture</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Three.js CDN Link (This replaces local installation) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+
     <nav class="navbar">
-        <div class="logo">H&S <span style="color: #dc2626;">DEVELOPER</span></div>
-        <button class="cta-btn">Get Started</button>
+        <div class="logo">H&S <span class="highlight">DEVELOPER</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#estimator">Cost Estimator</a></li>
+        </ul>
+        <button class="cta-btn">Book Consultation</button>
     </nav>
 
-    <section class="hero">
+    <section class="hero" id="home">
         <div class="hero-content">
-            <h1>Design Your <span style="color: #dc2626;">Premium</span> Space.</h1>
-            <p>Advanced 3D architectural solutions for modern developments.</p>
-            <button class="cta-btn">Calculate Estimate</button>
+            <div class="badge">Next-Gen Architecture</div>
+            <h1>Build Your <span class="highlight">Legacy.</span></h1>
+            <p>We transform abstract concepts into premium residential and commercial realities using automated estimation systems and 3D precision.</p>
+            <div class="btn-group">
+                <a href="#estimator" class="cta-btn">Calculate Budget</a>
+                <a href="#services" class="secondary-btn">Explore Systems</a>
+            </div>
         </div>
-        
         <div class="canvas-container">
-            <!-- JavaScript will automatically inject the 3D canvas here -->
             <div id="canvas-wrapper"></div>
         </div>
     </section>
 
-    <!-- Custom JavaScript -->
+    <section class="services" id="services">
+        <div class="section-header">
+            <h2>Our Core <span class="highlight">Verticals</span></h2>
+            <p>Systematized solutions for maximum structural integrity and aesthetic dominance.</p>
+        </div>
+        <div class="grid-container">
+            <div class="service-card">
+                <i class="fa-solid fa-building icon"></i>
+                <h3>Commercial Structures</h3>
+                <p>High-yield commercial plazas and corporate office fit-outs built for scale.</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-house-chimney icon"></i>
+                <h3>Luxury Residential</h3>
+                <p>Aesthetic refinement and smart-home integration for high-net-worth clients.</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-hammer icon"></i>
+                <h3>Premium Finishing</h3>
+                <p>Top-tier material sourcing from PU panels to MDF ceilings for flawless interiors.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="estimator-section" id="estimator">
+        <div class="estimator-container">
+            <h2>Smart Project <span class="highlight">Estimator</span></h2>
+            <p style="text-align: center; color: #9ca3af; margin-bottom: 30px;">Generate a real-time financial projection for your next development.</p>
+            
+            <div class="form-group">
+                <label>Total Covered Area (Sq. Ft.)</label>
+                <input type="number" id="area-input" placeholder="e.g. 2500" min="1">
+            </div>
+            
+            <div class="form-group">
+                <label>Development Tier</label>
+                <select id="type-input">
+                    <option value="3500">Grey Structure Build (Rs. 3,500 / sq. ft.)</option>
+                    <option value="5500">Standard Finishing (Rs. 5,500 / sq. ft.)</option>
+                    <option value="8500">High-Status Luxury (Rs. 8,500 / sq. ft.)</option>
+                </select>
+            </div>
+            
+            <button id="calculate-btn" class="cta-btn block-btn">Run Algorithm</button>
+            
+            <div id="result-box" class="result-box">
+                <p>Estimated Capital Required:</p>
+                <h3 id="total-cost" class="highlight">Rs. 0</h3>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="logo">H&S <span class="highlight">DEVELOPER</span></div>
+            <p>© 2026 Engineered for Excellence. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
