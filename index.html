@@ -14,142 +14,234 @@
 
     <nav class="navbar glass-panel">
         <div class="brand-container">
-            <img src="HS.jpg" alt="H&S Logo" class="brand-logo">
+            <img src="HS.jpg" alt="H&S Logo" class="brand-logo" onerror="this.src='https://via.placeholder.com/50'">
             <div class="logo-text">H&S <span class="highlight">DEVELOPER</span></div>
         </div>
         <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
+            <li><a href="#milestones">Legacy</a></li>
+            <li><a href="#workflow">Process</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#estimator">Estimator</a></li>
-            <li><a href="#contact">Contact</a></li>
         </ul>
-        <a href="#contact" class="cta-btn glass-btn">Book Consultation</a>
+        <a href="#estimator" class="cta-btn glass-btn">Get Quote</a>
     </nav>
 
     <section class="hero" id="home">
         <div class="carousel-container">
             <div class="slide active" style="background-image: url('crousal 1 .png');"></div>
             <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1600607687931-cecebd803400?q=80&w=2000&auto=format&fit=crop');"></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop');"></div>
             <div class="carousel-overlay"></div>
         </div>
-
         <div class="hero-content glass-panel reveal-load">
-            <div class="badge">Liquid Edge Design</div>
+            <div class="badge">Advanced Structural Engineering</div>
             <h1>Build Your <span class="highlight">Legacy.</span></h1>
-            <p>Transforming concepts into high-end architectural realities with precision engineering and automated systems.</p>
-            <div class="btn-group">
-                <a href="#estimator" class="cta-btn glass-btn">Calculate Estimate</a>
-                <a href="#services" class="secondary-btn">View Masterpieces</a>
-            </div>
+            <p>We execute automated construction workflows and high-yield architectural developments.</p>
         </div>
     </section>
 
-    <section class="stats-section">
-        <div class="stat-box glass-panel reveal">
-            <h2 class="counter" data-target="150">0</h2>
-            <p>Premium Builds</p>
-        </div>
-        <div class="stat-box glass-panel reveal">
-            <h2 class="counter" data-target="25">0</h2>
-            <p>Cities Covered</p>
-        </div>
-        <div class="stat-box glass-panel reveal">
-            <h2><span class="counter" data-target="100">0</span>%</h2>
-            <p>Client Satisfaction</p>
-        </div>
-    </section>
-
-    <section class="services" id="services">
+    <section class="milestones-section" id="milestones">
         <div class="section-header reveal">
-            <h2>Our Core <span class="highlight">Verticals</span></h2>
-            <p>Systematized high-yield structural solutions.</p>
+            <h2 class="highlight" style="font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px;">Achievement</h2>
+            <h2 style="font-size: 3rem; margin: 10px 0;">Celebrating Milestones, Building a Legacy</h2>
+            <p>At H&S Developer, we take pride in every project we deliver.<br>From residential homes to commercial structures, we set new benchmarks.</p>
         </div>
-        <div class="grid-container">
-            <div class="service-card glass-panel reveal">
-                <i class="fa-solid fa-building icon"></i>
-                <div class="card-content">
-                    <h3>Commercial Plazas</h3>
-                    <p>High-yield commercial structures engineered for absolute scale and dominance.</p>
+        <div class="circles-container reveal">
+            <div class="circle-box">
+                <div class="svg-circle" data-percent="95">
+                    <svg><circle class="bg" cx="60" cy="60" r="50"></circle><circle class="progress" cx="60" cy="60" r="50"></circle></svg>
+                    <div class="circle-text">0%</div>
+                </div>
+                <h3>Cost<br>Efficiency</h3>
+            </div>
+            <div class="circle-box">
+                <div class="svg-circle" data-percent="100">
+                    <svg><circle class="bg" cx="60" cy="60" r="50"></circle><circle class="progress" cx="60" cy="60" r="50"></circle></svg>
+                    <div class="circle-text">0%</div>
+                </div>
+                <h3>Timely<br>Delivery</h3>
+            </div>
+            <div class="circle-box">
+                <div class="svg-circle" data-percent="90">
+                    <svg><circle class="bg" cx="60" cy="60" r="50"></circle><circle class="progress" cx="60" cy="60" r="50"></circle></svg>
+                    <div class="circle-text">0%</div>
+                </div>
+                <h3>Technological<br>Innovation</h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="workflow-section" id="workflow">
+        <div class="section-header reveal">
+            <h2>Our Development <span class="highlight">Workflow</span></h2>
+        </div>
+        <div class="workflow-grid reveal">
+            <div class="workflow-column left-col">
+                <div class="work-step">
+                    <div class="work-icon"><i class="fa-solid fa-building-user"></i></div>
+                    <div class="work-text">
+                        <h3>Consultation / Planning</h3>
+                        <p>Strategic development plans analyzing site conditions.</p>
+                    </div>
+                </div>
+                <div class="work-step">
+                    <div class="work-icon"><i class="fa-solid fa-pen-ruler"></i></div>
+                    <div class="work-text">
+                        <h3>Design & Architecture</h3>
+                        <p>Detailed structural layouts and modern engineering.</p>
+                    </div>
+                </div>
+                <div class="work-step">
+                    <div class="work-icon"><i class="fa-solid fa-cubes"></i></div>
+                    <div class="work-text">
+                        <h3>Material Selection</h3>
+                        <p>Sourcing high-quality materials for long-term durability.</p>
+                    </div>
                 </div>
             </div>
-            <div class="service-card glass-panel reveal">
-                <i class="fa-solid fa-house-chimney icon"></i>
-                <div class="card-content">
-                    <h3>Luxury Residential</h3>
-                    <p>Sophisticated minimalist designs layered with smart-home automation.</p>
+            
+            <div class="workflow-center">
+                <img src="https://images.unsplash.com/photo-1541888086925-0c13d4f47854?q=80&w=800&auto=format&fit=crop" alt="Engineer" class="engineer-img">
+            </div>
+
+            <div class="workflow-column right-col">
+                <div class="work-step reverse">
+                    <div class="work-text text-right">
+                        <h3>Construction / Assembly</h3>
+                        <p>Execution with strict quality control techniques.</p>
+                    </div>
+                    <div class="work-icon"><i class="fa-solid fa-helmet-safety"></i></div>
+                </div>
+                <div class="work-step reverse">
+                    <div class="work-text text-right">
+                        <h3>Finishing & Assurance</h3>
+                        <p>Inspecting every detail for superior aesthetics.</p>
+                    </div>
+                    <div class="work-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+                </div>
+                <div class="work-step reverse">
+                    <div class="work-text text-right">
+                        <h3>Project Handover</h3>
+                        <p>Delivery to the client with full transparency.</p>
+                    </div>
+                    <div class="work-icon"><i class="fa-solid fa-handshake"></i></div>
                 </div>
             </div>
-            <div class="service-card glass-panel reveal">
-                <i class="fa-solid fa-hammer icon"></i>
-                <div class="card-content">
-                    <h3>Premium Finishing</h3>
-                    <p>Top-tier aesthetic materials including PU panels and precise MDF styling.</p>
+        </div>
+    </section>
+
+    <section class="services-section" id="services">
+        <div class="section-header reveal">
+            <h2>Core <span class="highlight">Divisions</span></h2>
+        </div>
+        <div class="premium-grid">
+            <div class="premium-card reveal">
+                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop');"></div>
+                <div class="card-header">
+                    <i class="fa-solid fa-trowel-bricks"></i>
+                    <h4>Residential Construction</h4>
+                </div>
+                <div class="card-overlay">
+                    <h3>Residential</h3>
+                    <p>Luxury villas, multi-family units, and smart homes engineered to perfection.</p>
+                    <button class="cta-btn glass-btn" style="padding: 8px 15px; margin-top:15px;">Explore</button>
+                </div>
+            </div>
+            <div class="premium-card reveal">
+                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop');"></div>
+                <div class="card-header">
+                    <i class="fa-solid fa-city"></i>
+                    <h4>Commercial Construction</h4>
+                </div>
+                <div class="card-overlay">
+                    <h3>Commercial</h3>
+                    <p>High-yield corporate plazas and retail spaces built for absolute scale.</p>
+                    <button class="cta-btn glass-btn" style="padding: 8px 15px; margin-top:15px;">Explore</button>
+                </div>
+            </div>
+            <div class="premium-card reveal">
+                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1541888086925-0c13d4f47854?q=80&w=800&auto=format&fit=crop');"></div>
+                <div class="card-header">
+                    <i class="fa-solid fa-industry"></i>
+                    <h4>PEB Structures</h4>
+                </div>
+                <div class="card-overlay">
+                    <h3>PEB Structures</h3>
+                    <p>Pre-Engineered Buildings for factories and warehousing.</p>
+                    <button class="cta-btn glass-btn" style="padding: 8px 15px; margin-top:15px;">Explore</button>
+                </div>
+            </div>
+            <div class="premium-card reveal">
+                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800&auto=format&fit=crop');"></div>
+                <div class="card-header">
+                    <i class="fa-solid fa-paint-roller"></i>
+                    <h4>Finishing Services</h4>
+                </div>
+                <div class="card-overlay">
+                    <h3>Finishing</h3>
+                    <p>Premium PU panels, MDF styling, and flawless architectural polish.</p>
+                    <button class="cta-btn glass-btn" style="padding: 8px 15px; margin-top:15px;">Explore</button>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="estimator-section" id="estimator">
-        <div class="estimator-container glass-panel reveal">
-            <h2>Smart Cost <span class="highlight">Estimator</span></h2>
-            <p style="text-align:center; color:#9ca3af; margin-bottom:30px;">Algorithmic financial projection system.</p>
+        <div class="estimator-wrapper glass-panel reveal">
+            <div class="estimator-header">
+                <h2>Advanced <span class="highlight">Algorithmic</span> Estimator</h2>
+                <p>Generate a highly precise structural and financial projection.</p>
+            </div>
             
-            <div class="form-group">
-                <label>Total Covered Area (Sq. Ft.)</label>
-                <input type="number" id="area-input" class="glass-input" placeholder="e.g. 2500" min="1">
-            </div>
-            <div class="form-group">
-                <label>Construction Tier</label>
-                <select id="type-input" class="glass-input">
-                    <option value="3500">Grey Structure (Rs. 3,500 / sq. ft.)</option>
-                    <option value="5500">Standard Finishing (Rs. 5,500 / sq. ft.)</option>
-                    <option value="8500">High-Status Luxury (Rs. 8,500 / sq. ft.)</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Add-ons</label>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" id="feature-paint" value="500000"> Premium Paint & Polish (+ Rs. 5 Lac)</label>
-                    <label><input type="checkbox" id="feature-fall" value="300000"> Designer False Ceiling (+ Rs. 3 Lac)</label>
-                </div>
-            </div>
-            <button id="calculate-btn" class="cta-btn glass-btn block-btn">Run Algorithm</button>
-            <div id="result-box" class="result-box glass-panel" style="display:none;">
-                <p>Capital Required:</p>
-                <h3 id="total-cost" class="highlight">Rs. 0</h3>
-            </div>
-        </div>
-    </section>
+            <div class="estimator-grid">
+                <div class="estimator-controls">
+                    <div class="form-group">
+                        <label>Covered Area: <span id="area-val" class="highlight">2500</span> Sq.Ft</label>
+                        <input type="range" id="area-slider" min="500" max="10000" step="100" value="2500" class="premium-slider">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Base Structural Tier</label>
+                        <select id="tier-select" class="glass-input">
+                            <option value="3500">Standard Grey Structure (Rs. 3,500/sq.ft)</option>
+                            <option value="5500">Premium Grey Structure (Rs. 5,500/sq.ft)</option>
+                            <option value="8500">Turnkey Luxury Build (Rs. 8,500/sq.ft)</option>
+                        </select>
+                    </div>
 
-    <section class="contact-section" id="contact">
-        <div class="contact-container glass-panel reveal">
-            <h2>Initiate <span class="highlight">Project</span></h2>
-            <form id="lead-form">
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" class="glass-input" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <label>Phone Number</label>
-                    <input type="tel" class="glass-input" placeholder="+92 300 0000000" required>
-                </div>
-                <div class="form-group">
-                    <label>Project Interest</label>
-                    <div class="checkbox-grid">
-                        <label><input type="checkbox" name="interest" value="Commercial"> Commercial Build</label>
-                        <label><input type="checkbox" name="interest" value="Interior"> Luxury Interior</label>
-                        <label><input type="checkbox" name="interest" value="Grey"> Grey Structure</label>
-                        <label><input type="checkbox" name="interest" value="Renovation"> Renovation</label>
+                    <div class="form-group">
+                        <label>Interior Aesthetic Finishes</label>
+                        <div class="toggle-group">
+                            <label class="custom-checkbox">
+                                <input type="checkbox" id="add-pu" value="800000"> 
+                                <span class="checkmark"></span> PU Panels & MDF Styling
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="checkbox" id="add-smart" value="1500000"> 
+                                <span class="checkmark"></span> Smart Home Automation
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="checkbox" id="add-solar" value="1200000"> 
+                                <span class="checkmark"></span> 10kW Solar Grid
+                            </label>
+                        </div>
                     </div>
                 </div>
-                <button type="submit" class="cta-btn glass-btn block-btn">Submit Request</button>
-            </form>
+
+                <div class="receipt-box">
+                    <h3>Projected Analysis</h3>
+                    <hr>
+                    <div class="receipt-row"><span>Base Construction:</span> <span id="rec-base">Rs. 0</span></div>
+                    <div class="receipt-row"><span>Finishing & Add-ons:</span> <span id="rec-addons">Rs. 0</span></div>
+                    <hr>
+                    <div class="receipt-total"><span>Total Capital:</span> <span id="rec-total" class="highlight">Rs. 0</span></div>
+                    <button id="calc-btn" class="cta-btn glass-btn block-btn" style="margin-top:20px;">Generate Formal Quote</button>
+                </div>
+            </div>
         </div>
     </section>
 
     <footer class="footer glass-panel">
-        <p>&copy; 2026 H&S Developer. Engineered for Global Excellence.</p>
+        <p>&copy; 2026 Engineered by Adbismarketinghub for H&S Developer.</p>
     </footer>
 
     <script src="script.js"></script>
