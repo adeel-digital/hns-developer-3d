@@ -1,261 +1,1738 @@
 <!DOCTYPE html>
 <html lang="en" class="dark-theme">
+
 <head>
     <meta charset="UTF-8">
-    <!-- Viewport fix to prevent horizontal scrolling on mobile -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="H&S Developer - Premium Construction & Renovation Services">
-    <title>H&S Developer | Premium Construction</title>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>H&S Developer | Premium Construction Company</title>
+
+    <meta name="description"
+        content="H&S Developer - Grey Structure, Turnkey Construction, Renovation, Interior Design, Commercial Projects and Luxury Finishing.">
+
+    <meta name="keywords"
+        content="Construction Pakistan, Grey Structure, H&S Developer, Turnkey Construction, Renovation">
+
+    <meta name="author" content="H&S Developer">
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- AOS -->
+
+    <link rel="stylesheet"
+        href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+
+    <!-- Swiper -->
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+    <!-- CSS -->
+
     <link rel="stylesheet" href="style.css">
-    <!-- Three.js for Complex 3D Engine -->
+
+    <!-- ThreeJS -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
 </head>
+
 <body>
 
-    <!-- Interactive 3D WebGL Background -->
-    <div id="webgl-container" aria-hidden="true"></div>
+    <!-- ===================================================== -->
 
-    <!-- Navigation -->
-    <nav class="navbar glass-morph" id="main-nav">
-        <div class="nav-container">
-            <a href="#" class="brand">
-                <img src="HS.jpg" alt="H&S Developer Logo" class="brand__logo" onerror="this.src='https://images.unsplash.com/photo-1541888086925-0c13d4f47854?w=100&h=100&fit=crop'">
-                <div class="brand__text">H&S <span class="accent-color">DEVELOPER</span></div>
-            </a>
-            
-            <button class="hamburger-menu" id="mobile-toggle" aria-label="Menu">
-                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-            </button>
+    <!-- PRELOADER -->
 
-            <ul class="nav-list" id="nav-menu">
-                <li class="nav-item"><a href="#hero" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="#about" class="nav-link">About Us</a></li>
-                <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
-                <li class="nav-item"><a href="#estimator" class="nav-link">Cost Calculator</a></li>
-                <li class="nav-item"><a href="#contact" class="btn btn--primary nav-link">Get a Quote</a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- ===================================================== -->
 
-    <!-- Hero Section (Images 1, 2, 3) -->
-    <header class="hero" id="hero">
-        <div class="hero__slider">
-            <div class="hero__slide is-active" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2000&auto=format&fit=crop');"></div>
-            <div class="hero__slide" style="background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2000&auto=format&fit=crop');"></div>
-            <div class="hero__slide" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop');"></div>
-        </div>
-        <div class="hero__content glass-morph scroll-reveal">
-            <div class="badge badge--glow">Premium Construction Services</div>
-            <h1 class="hero__title">Build Your <br><span class="accent-color">Dream Space.</span></h1>
-            <p class="hero__subtitle">We provide top-quality construction, grey structure, and premium finishing services for residential and commercial projects.</p>
-            <div class="hero__actions">
-                <a href="#estimator" class="btn btn--primary">Calculate Cost</a>
-                <a href="#services" class="btn btn--outline">Our Services</a>
+    <div id="preloader">
+
+        <div class="loader-wrapper">
+
+            <div class="loader-logo">
+
+                <img src="HS.jpg" alt="H&S Developer">
+
             </div>
+
+            <div class="loader-text">
+
+                <h1>H&S DEVELOPER</h1>
+
+                <p>BUILDING THE FUTURE...</p>
+
+            </div>
+
+            <div class="loader-progress">
+
+                <span></span>
+
+            </div>
+
         </div>
+
+    </div>
+
+    <!-- ===================================================== -->
+
+    <!-- WEBGL -->
+
+    <!-- ===================================================== -->
+
+    <div id="webgl-container"></div>
+
+    <!-- ===================================================== -->
+
+    <!-- CUSTOM CURSOR -->
+
+    <!-- ===================================================== -->
+
+    <div class="cursor"></div>
+
+    <div class="cursor2"></div>
+
+    <!-- ===================================================== -->
+
+    <!-- NAVBAR -->
+
+    <!-- ===================================================== -->
+
+    <header class="header">
+
+        <nav class="navbar glass">
+
+            <div class="container">
+
+                <a href="#" class="logo">
+
+                    <img src="HS.jpg" alt="Logo">
+
+                    <span>
+
+                        H&S
+
+                        <strong>Developer</strong>
+
+                    </span>
+
+                </a>
+
+                <ul class="nav-menu">
+
+                    <li><a href="#hero">Home</a></li>
+
+                    <li><a href="#about">About</a></li>
+
+                    <li><a href="#services">Services</a></li>
+
+                    <li><a href="#projects">Projects</a></li>
+
+                    <li><a href="#calculator">Calculator</a></li>
+
+                    <li><a href="#contact">Contact</a></li>
+
+                </ul>
+
+                <a href="#contact" class="quote-btn">
+
+                    Get Quote
+
+                </a>
+
+                <div class="menu-btn">
+
+                    <span></span>
+
+                    <span></span>
+
+                    <span></span>
+
+                </div>
+
+            </div>
+
+        </nav>
+
     </header>
 
-    <!-- Milestones Section -->
-    <section class="metrics" id="about">
-        <div class="section-header scroll-reveal">
-            <h2 class="subtitle">Why Choose Us</h2>
-            <h3 class="title">Delivering Excellence Every Time</h3>
-            <p style="color: #ccc; max-width: 600px; margin: 0 auto;">We focus on saving your money, delivering on time, and providing the best quality building materials available in the market.</p>
-        </div>
-        <div class="metrics__grid scroll-reveal">
-            <article class="metric-card">
-                <div class="svg-progress" data-target="100">
-                    <svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="50"/><circle class="bar" cx="60" cy="60" r="50"/></svg>
-                    <span class="counter">0</span><span class="symbol">%</span>
-                </div>
-                <h4 class="metric-card__title">Client Satisfaction</h4>
-            </article>
-            <article class="metric-card">
-                <div class="svg-progress" data-target="95">
-                    <svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="50"/><circle class="bar" cx="60" cy="60" r="50"/></svg>
-                    <span class="counter">0</span><span class="symbol">%</span>
-                </div>
-                <h4 class="metric-card__title">On-Time Delivery</h4>
-            </article>
-            <article class="metric-card">
-                <div class="svg-progress" data-target="100">
-                    <svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="50"/><circle class="bar" cx="60" cy="60" r="50"/></svg>
-                    <span class="counter">0</span><span class="symbol">%</span>
-                </div>
-                <h4 class="metric-card__title">Quality Assurance</h4>
-            </article>
-        </div>
-    </section>
+    <!-- ===================================================== -->
 
-    <!-- Services Grid (Images 4, 5, 6, 7, 8) -->
-    <section class="services" id="services">
-        <div class="section-header scroll-reveal">
-            <h2 class="subtitle">What We Do</h2>
-            <h3 class="title">Our Main <span class="accent-color">Services</span></h3>
-        </div>
-        <div class="services__grid">
-            <!-- Service 1 -->
-            <div class="service-card scroll-reveal">
-                <div class="service-card__bg" style="background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=800&auto=format&fit=crop');"></div>
-                <div class="service-card__front">
-                    <i class="fa-solid fa-house-chimney"></i>
-                    <h3>Turnkey Construction</h3>
-                </div>
-                <div class="service-card__back glass-morph">
-                    <h3>Turnkey Build</h3>
-                    <p>Complete end-to-end construction. You hand us the plot, we hand you the keys to your dream home.</p>
-                </div>
-            </div>
-             <!-- Service 2 -->
-             <div class="service-card scroll-reveal">
-                <div class="service-card__bg" style="background-image: url('https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=800&auto=format&fit=crop');"></div>
-                <div class="service-card__front">
-                    <i class="fa-solid fa-trowel-bricks"></i>
-                    <h3>Grey Structure</h3>
-                </div>
-                <div class="service-card__back glass-morph">
-                    <h3>Grey Structure</h3>
-                    <p>Solid foundation and brickwork using top-grade cement, steel, and premium construction techniques.</p>
-                </div>
-            </div>
-            <!-- Service 3 -->
-            <div class="service-card scroll-reveal">
-                <div class="service-card__bg" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop');"></div>
-                <div class="service-card__front">
-                    <i class="fa-solid fa-city"></i>
-                    <h3>Commercial Fit-outs</h3>
-                </div>
-                <div class="service-card__back glass-morph">
-                    <h3>Commercial Plazas</h3>
-                    <p>Building high-quality commercial plazas, restaurants, and office spaces designed for modern business.</p>
-                </div>
-            </div>
-            <!-- Service 4 -->
-            <div class="service-card scroll-reveal">
-                <div class="service-card__bg" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=800&auto=format&fit=crop');"></div>
-                <div class="service-card__front">
-                    <i class="fa-solid fa-hammer"></i>
-                    <h3>Home Renovation</h3>
-                </div>
-                <div class="service-card__back glass-morph">
-                    <h3>Renovation</h3>
-                    <p>Upgrading your old spaces with modern layouts, better plumbing, and fresh architectural designs.</p>
-                </div>
-            </div>
-            <!-- Service 5 -->
-            <div class="service-card scroll-reveal">
-                <div class="service-card__bg" style="background-image: url('https://images.unsplash.com/photo-1622372738946-62e02505feb3?q=80&w=800&auto=format&fit=crop');"></div>
-                <div class="service-card__front">
-                    <i class="fa-solid fa-paint-roller"></i>
-                    <h3>Finishing & Interiors</h3>
-                </div>
-                <div class="service-card__back glass-morph">
-                    <h3>Premium Finishing</h3>
-                    <p>False ceilings, marble fixing, custom woodwork, cabinetry, and imported PU panel installations.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- HERO -->
 
-    <!-- Cost Estimator Section -->
-    <section class="estimator" id="estimator">
-        <div class="estimator__container glass-morph scroll-reveal">
-            <div class="section-header">
-                <h2 class="title">Cost <span class="accent-color">Calculator</span></h2>
-                <p>Get an instant estimate for your project. No hidden fees.</p>
+    <!-- ===================================================== -->
+
+    <section class="hero" id="hero">
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-video">
+
+            <div class="swiper heroSwiper">
+
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide">
+
+                        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1800"
+                            alt="Construction">
+
+                    </div>
+
+                    <div class="swiper-slide">
+
+                        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1800"
+                            alt="Building">
+
+                    </div>
+
+                    <div class="swiper-slide">
+
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1800"
+                            alt="Architecture">
+
+                    </div>
+
+                </div>
+
             </div>
-            <div class="estimator__layout">
-                <div class="estimator__inputs">
-                    <div class="form-control">
-                        <label>Total Plot Area (Sq.Ft): <span id="area-display" class="accent-color">2500</span></label>
-                        <input type="range" id="area-slider" class="custom-slider" min="500" max="10000" step="100" value="2500">
+
+        </div>
+
+        <div class="hero-content">
+
+            <span class="hero-tag">
+
+                Premium Construction Company
+
+            </span>
+
+            <h1>
+
+                Building Dreams
+
+                <span>
+
+                    Into Reality
+
+                </span>
+
+            </h1>
+
+            <p>
+
+                We provide luxury construction, grey structure,
+                commercial projects, interior designing,
+                renovations and complete turnkey solutions
+                throughout Pakistan.
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#calculator" class="btn-primary">
+
+                    Calculate Cost
+
+                </a>
+
+                <a href="#services" class="btn-secondary">
+
+                    Explore Services
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="hero-scroll">
+
+            <span></span>
+
+        </div>
+
+    </section>
+        <!-- ===================================================== -->
+    <!-- ABOUT -->
+    <!-- ===================================================== -->
+
+    <section class="about section" id="about">
+
+        <div class="container">
+
+            <div class="section-title" data-aos="fade-up">
+
+                <span>ABOUT H&S</span>
+
+                <h2>
+
+                    Engineering Excellence
+
+                    <strong>Since Day One</strong>
+
+                </h2>
+
+                <p>
+
+                    H&S Developer specializes in premium residential,
+
+                    commercial and industrial construction.
+
+                    Our experienced engineers,
+
+                    architects and skilled workforce ensure every
+
+                    project is completed with precision,
+
+                    transparency and unmatched quality.
+
+                </p>
+
+            </div>
+
+            <div class="about-grid">
+
+                <div class="about-image"
+
+                    data-aos="fade-right">
+
+                    <img
+
+                        src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1200"
+
+                        alt="Construction">
+
+                    <div class="experience-box">
+
+                        <h2>10+</h2>
+
+                        <p>
+
+                            Years Of
+
+                            Excellence
+
+                        </p>
+
                     </div>
-                    <div class="form-control">
-                        <label>Select Construction Type</label>
-                        <select id="tier-select" class="custom-select">
-                            <option value="3500">Grey Structure Only - Rs. 3,500/sq.ft</option>
-                            <option value="5500">Standard Turnkey Build - Rs. 5,500/sq.ft</option>
-                            <option value="8500">Luxury Premium Build - Rs. 8,500/sq.ft</option>
-                        </select>
-                    </div>
-                    <div class="form-control">
-                        <label>Extra Add-ons</label>
-                        <div class="checkbox-wrapper">
-                            <label class="custom-cb"><input type="checkbox" data-cost="1500000"><span class="box"></span> Smart Home System Automation</label>
-                            <label class="custom-cb"><input type="checkbox" data-cost="1200000"><span class="box"></span> 10kW Solar Panel System</label>
-                            <label class="custom-cb"><input type="checkbox" data-cost="800000"><span class="box"></span> Imported Interior Panels (PU/MDF)</label>
+
+                </div>
+
+                <div class="about-content"
+
+                    data-aos="fade-left">
+
+                    <div class="feature">
+
+                        <i class="fa-solid fa-building"></i>
+
+                        <div>
+
+                            <h3>
+
+                                Turnkey Projects
+
+                            </h3>
+
+                            <p>
+
+                                Complete planning,
+
+                                construction,
+
+                                finishing,
+
+                                handover.
+
+                            </p>
+
                         </div>
+
                     </div>
+
+                    <div class="feature">
+
+                        <i class="fa-solid fa-compass-drafting"></i>
+
+                        <div>
+
+                            <h3>
+
+                                Modern Architecture
+
+                            </h3>
+
+                            <p>
+
+                                Smart planning with
+
+                                contemporary elevations.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="feature">
+
+                        <i class="fa-solid fa-helmet-safety"></i>
+
+                        <div>
+
+                            <h3>
+
+                                Certified Engineers
+
+                            </h3>
+
+                            <p>
+
+                                Experienced supervisors
+
+                                and qualified engineers.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="feature">
+
+                        <i class="fa-solid fa-medal"></i>
+
+                        <div>
+
+                            <h3>
+
+                                Premium Quality
+
+                            </h3>
+
+                            <p>
+
+                                Grade-A materials with
+
+                                guaranteed workmanship.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
                 </div>
-                <div class="estimator__receipt">
-                    <h3>Estimated Price</h3>
-                    <div class="receipt-row"><span>Base Construction:</span> <span id="base-cost">Rs. 0</span></div>
-                    <div class="receipt-row"><span>Extra Features:</span> <span id="addon-cost">Rs. 0</span></div>
-                    <hr>
-                    <div class="receipt-row total"><span>Total Estimate:</span> <span id="total-cost" class="accent-color">Rs. 0</span></div>
-                </div>
+
             </div>
+
         </div>
+
     </section>
 
-    <!-- Exact Contact Form matching your Screenshot -->
-    <section class="contact" id="contact">
-        <div class="contact__grid scroll-reveal">
-            <!-- Left Info Side -->
-            <div class="contact__info">
-                <img src="HS.jpg" alt="Logo" class="contact__logo" onerror="this.src='https://images.unsplash.com/photo-1541888086925-0c13d4f47854?w=50&h=50&fit=crop'">
-                <h2 class="title">Engineer Your Mega Project</h2>
-                <p>Connect with our primary architectural execution office. We deploy heavy machinery and elite craftsmanship to build your vision from the ground up.</p>
-                <div class="contact-list">
-                    <div class="contact-item"><i class="fa-solid fa-phone"></i> <span>0302 511 3791</span></div>
-                    <div class="contact-item"><i class="fa-solid fa-envelope"></i> <span>info@hnsdeveloper.com</span></div>
-                    <div class="contact-item"><i class="fa-solid fa-location-dot"></i> <span>Islamabad, Pakistan</span></div>
+    <!-- ===================================================== -->
+    <!-- STATS -->
+    <!-- ===================================================== -->
+
+    <section class="stats">
+
+        <div class="container">
+
+            <div class="stats-grid">
+
+                <div class="stat-card"
+
+                    data-aos="zoom-in">
+
+                    <h2 class="counter"
+
+                        data-target="500">
+
+                        0
+
+                    </h2>
+
+                    <span>
+
+                        Completed Projects
+
+                    </span>
+
                 </div>
+
+                <div class="stat-card"
+
+                    data-aos="zoom-in"
+
+                    data-aos-delay="100">
+
+                    <h2 class="counter"
+
+                        data-target="100">
+
+                        0
+
+                    </h2>
+
+                    <span>
+
+                        Client Satisfaction %
+
+                    </span>
+
+                </div>
+
+                <div class="stat-card"
+
+                    data-aos="zoom-in"
+
+                    data-aos-delay="200">
+
+                    <h2 class="counter"
+
+                        data-target="75">
+
+                        0
+
+                    </h2>
+
+                    <span>
+
+                        Expert Team Members
+
+                    </span>
+
+                </div>
+
+                <div class="stat-card"
+
+                    data-aos="zoom-in"
+
+                    data-aos-delay="300">
+
+                    <h2 class="counter"
+
+                        data-target="15">
+
+                        0
+
+                    </h2>
+
+                    <span>
+
+                        Years Experience
+
+                    </span>
+
+                </div>
+
             </div>
-            
-            <!-- Right Form Side (Solid Background inputs) -->
-            <div class="contact__form-wrapper">
-                <form action="https://formsubmit.co/info@hnsdeveloper.com" method="POST" class="solid-form">
-                    <input type="hidden" name="_captcha" value="false">
-                    
-                    <input type="text" name="Full_Name" class="solid-input" placeholder="Full Name" required>
-                    <input type="email" name="Email_Address" class="solid-input" placeholder="Email Address" required>
-                    <input type="tel" name="Phone_Number" class="solid-input" placeholder="Phone Number" required>
-                    
-                    <!-- Exact Dropdown Options from Screenshot -->
-                    <select name="Primary_Requirement" class="solid-input" required>
-                        <option value="" disabled selected>Select Primary Requirement</option>
-                        <option value="Turnkey Construction">1. Turnkey Construction (End-to-End)</option>
-                        <option value="Grey Structure">2. Grey Structure Development</option>
-                        <option value="Commercial Restaurant">3. Commercial Restaurant/Fit-out</option>
-                        <option value="Home Renovation">4. Complete Home Renovation</option>
-                        <option value="False Ceiling">5. False Ceiling Installation</option>
-                        <option value="Marble Fixing">6. Marble Fixing</option>
-                        <option value="Custom Wooden Doors">7. Custom Wooden Doors</option>
-                        <option value="Cabinetry Solutions">8. Cabinetry Solutions</option>
-                        <option value="Paint Polish Treatment">9. Paint, Polish & Treatment</option>
+
+        </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- SERVICES -->
+    <!-- ===================================================== -->
+
+    <section class="services section"
+
+        id="services">
+
+        <div class="container">
+
+            <div class="section-title"
+
+                data-aos="fade-up">
+
+                <span>
+
+                    OUR SERVICES
+
+                </span>
+
+                <h2>
+
+                    Premium Construction
+
+                    Solutions
+
+                </h2>
+
+            </div>
+
+            <div class="services-grid">
+
+                <div class="service-card"
+
+                    data-aos="fade-up">
+
+                    <div class="icon">
+
+                        <i class="fa-solid fa-house"></i>
+
+                    </div>
+
+                    <h3>
+
+                        Turnkey Construction
+
+                    </h3>
+
+                    <p>
+
+                        Complete house construction
+
+                        from foundation
+
+                        to final finishing.
+
+                    </p>
+
+                    <a href="#contact">
+
+                        Learn More
+
+                    </a>
+
+                </div>
+
+                <div class="service-card"
+
+                    data-aos="fade-up"
+
+                    data-aos-delay="100">
+
+                    <div class="icon">
+
+                        <i class="fa-solid fa-trowel-bricks"></i>
+
+                    </div>
+
+                    <h3>
+
+                        Grey Structure
+
+                    </h3>
+
+                    <p>
+
+                        RCC,
+
+                        brickwork,
+
+                        plaster,
+
+                        roofing,
+
+                        structural excellence.
+
+                    </p>
+
+                    <a href="#contact">
+
+                        Learn More
+
+                    </a>
+
+                </div>
+
+                <div class="service-card"
+
+                    data-aos="fade-up"
+
+                    data-aos-delay="200">
+
+                    <div class="icon">
+
+                        <i class="fa-solid fa-paint-roller"></i>
+
+                    </div>
+
+                    <h3>
+
+                        Interior Finishing
+
+                    </h3>
+
+                    <p>
+
+                        Luxury interiors,
+
+                        ceilings,
+
+                        paint,
+
+                        marble,
+
+                        woodwork,
+
+                        lighting.
+
+                    </p>
+
+                    <a href="#contact">
+
+                        Learn More
+
+                    </a>
+
+                </div>
+
+                <div class="service-card"
+
+                    data-aos="fade-up"
+
+                    data-aos-delay="300">
+
+                    <div class="icon">
+
+                        <i class="fa-solid fa-city"></i>
+
+                    </div>
+
+                    <h3>
+
+                        Commercial Projects
+
+                    </h3>
+
+                    <p>
+
+                        Offices,
+
+                        plazas,
+
+                        restaurants,
+
+                        retail spaces,
+
+                        warehouses.
+
+                    </p>
+
+                    <a href="#contact">
+
+                        Learn More
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+        <!-- ===================================================== -->
+    <!-- PROJECT SHOWCASE -->
+    <!-- ===================================================== -->
+
+    <section class="projects section" id="projects">
+
+        <div class="container">
+
+            <div class="section-title" data-aos="fade-up">
+
+                <span>OUR PROJECTS</span>
+
+                <h2>
+
+                    Building Pakistan's
+
+                    <strong>Future</strong>
+
+                </h2>
+
+                <p>
+
+                    Every project reflects our commitment to engineering,
+
+                    durability and luxury finishing.
+
+                </p>
+
+            </div>
+
+            <div class="projects-grid">
+
+                <article class="project-card" data-aos="zoom-in">
+
+                    <div class="project-image">
+
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200"
+                            alt="Luxury House">
+
+                    </div>
+
+                    <div class="project-content">
+
+                        <span class="project-category">
+
+                            Residential
+
+                        </span>
+
+                        <h3>
+
+                            Luxury Villa Construction
+
+                        </h3>
+
+                        <p>
+
+                            Complete turnkey construction including
+
+                            architecture,
+
+                            grey structure,
+
+                            finishing and landscaping.
+
+                        </p>
+
+                        <a href="#contact" class="project-btn">
+
+                            View Details
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+                <article class="project-card"
+
+                    data-aos="zoom-in"
+
+                    data-aos-delay="100">
+
+                    <div class="project-image">
+
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200"
+                            alt="Commercial">
+
+                    </div>
+
+                    <div class="project-content">
+
+                        <span class="project-category">
+
+                            Commercial
+
+                        </span>
+
+                        <h3>
+
+                            Modern Office Plaza
+
+                        </h3>
+
+                        <p>
+
+                            High-rise commercial development
+
+                            with premium glass facade.
+
+                        </p>
+
+                        <a href="#contact"
+
+                            class="project-btn">
+
+                            View Details
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+                <article class="project-card"
+
+                    data-aos="zoom-in"
+
+                    data-aos-delay="200">
+
+                    <div class="project-image">
+
+                        <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200"
+                            alt="Interior">
+
+                    </div>
+
+                    <div class="project-content">
+
+                        <span class="project-category">
+
+                            Interior
+
+                        </span>
+
+                        <h3>
+
+                            Luxury Interior Design
+
+                        </h3>
+
+                        <p>
+
+                            Elegant interiors with imported materials,
+
+                            modern lighting
+
+                            and premium finishing.
+
+                        </p>
+
+                        <a href="#contact"
+
+                            class="project-btn">
+
+                            View Details
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- CONSTRUCTION PROCESS -->
+    <!-- ===================================================== -->
+
+    <section class="timeline">
+
+        <div class="container">
+
+            <div class="section-title"
+
+                data-aos="fade-up">
+
+                <span>
+
+                    OUR PROCESS
+
+                </span>
+
+                <h2>
+
+                    How We Build
+
+                </h2>
+
+            </div>
+
+            <div class="timeline-wrapper">
+
+                <div class="timeline-item">
+
+                    <div class="timeline-number">
+
+                        01
+
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h3>
+
+                            Consultation
+
+                        </h3>
+
+                        <p>
+
+                            Initial meeting,
+
+                            budget planning,
+
+                            project discussion.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="timeline-item">
+
+                    <div class="timeline-number">
+
+                        02
+
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h3>
+
+                            Architecture
+
+                        </h3>
+
+                        <p>
+
+                            2D drawings,
+
+                            3D elevations,
+
+                            planning approval.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="timeline-item">
+
+                    <div class="timeline-number">
+
+                        03
+
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h3>
+
+                            Construction
+
+                        </h3>
+
+                        <p>
+
+                            Grey structure,
+
+                            roofing,
+
+                            plumbing,
+
+                            electrical work.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="timeline-item">
+
+                    <div class="timeline-number">
+
+                        04
+
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h3>
+
+                            Finishing
+
+                        </h3>
+
+                        <p>
+
+                            Tiles,
+
+                            ceilings,
+
+                            paint,
+
+                            woodwork,
+
+                            fixtures.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="timeline-item">
+
+                    <div class="timeline-number">
+
+                        05
+
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h3>
+
+                            Project Delivery
+
+                        </h3>
+
+                        <p>
+
+                            Final inspection,
+
+                            quality assurance
+
+                            and handover.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- COST CALCULATOR -->
+    <!-- ===================================================== -->
+
+    <section class="calculator section"
+
+        id="calculator">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <span>
+
+                    ESTIMATE
+
+                </span>
+
+                <h2>
+
+                    Construction Cost Calculator
+
+                </h2>
+
+            </div>
+
+            <div class="calculator-wrapper">
+
+                <div class="calculator-left">
+
+                    <label>
+
+                        Plot Area
+
+                    </label>
+
+                    <input
+
+                        type="range"
+
+                        min="500"
+
+                        max="10000"
+
+                        step="100"
+
+                        value="2500"
+
+                        id="area-slider">
+
+                    <h3>
+
+                        <span id="area-value">
+
+                            2500
+
+                        </span>
+
+                        Sq.ft
+
+                    </h3>
+
+                    <label>
+
+                        Construction Type
+
+                    </label>
+
+                    <select id="construction-type">
+
+                        <option value="3500">
+
+                            Grey Structure
+
+                        </option>
+
+                        <option value="5500">
+
+                            Standard Turnkey
+
+                        </option>
+
+                        <option value="8500">
+
+                            Luxury Premium
+
+                        </option>
+
                     </select>
 
-                    <textarea name="Project_Details" class="solid-input" rows="4" placeholder="Describe your plot size, location, and structural vision..." required></textarea>
-                    
-                    <button type="submit" class="btn solid-submit">SUBMIT CONSTRUCTION INQUIRY</button>
-                </form>
+                </div>
+
+                <div class="calculator-right">
+
+                    <div class="price-card">
+
+                        <h2>
+
+                            Estimated Cost
+
+                        </h2>
+
+                        <h1>
+
+                            Rs.
+
+                            <span id="total-price">
+
+                                8,750,000
+
+                            </span>
+
+                        </h1>
+
+                        <a href="#contact"
+
+                            class="btn-primary">
+
+                            Request Detailed Quote
+
+                        </a>
+
+                    </div>
+
+                </div>
+
             </div>
+
         </div>
+
+    </section>
+        <!-- ===================================================== -->
+    <!-- TESTIMONIALS -->
+    <!-- ===================================================== -->
+
+    <section class="testimonials section" id="testimonials">
+
+        <div class="container">
+
+            <div class="section-title" data-aos="fade-up">
+
+                <span>CLIENT REVIEWS</span>
+
+                <h2>
+
+                    What Our Clients Say
+
+                </h2>
+
+                <p>
+
+                    Client satisfaction is our biggest achievement.
+
+                </p>
+
+            </div>
+
+            <div class="testimonial-grid">
+
+                <div class="testimonial-card" data-aos="fade-up">
+
+                    <div class="stars">
+
+                        <i class="fa-solid fa-star"></i>
+
+                        <i class="fa-solid fa-star"></i>
+
+                        <i class="fa-solid fa-star"></i>
+
+                        <i class="fa-solid fa-star"></i>
+
+                        <i class="fa-solid fa-star"></i>
+
+                    </div>
+
+                    <p>
+
+                        H&S Developer delivered our dream home on time.
+
+                        Their workmanship and finishing quality exceeded
+
+                        our expectations.
+
+                    </p>
+
+                    <div class="client">
+
+                        <img src="https://i.pravatar.cc/100?img=12">
+
+                        <div>
+
+                            <h4>
+
+                                Muhammad Ali
+
+                            </h4>
+
+                            <span>
+
+                                Islamabad
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="testimonial-card"
+
+                    data-aos="fade-up"
+
+                    data-aos-delay="150">
+
+                    <div class="stars">
+
+                        <i class="fa-solid fa-star"></i>
+
+                        <i class="fa-solid fa-star"></i>
+
+                        <i class="fa-solid fa-star"></i>
+
+                        <i class="fa-solid fa-star"></i>
+
+                        <i class="fa-solid fa-star"></i>
+
+                    </div>
+
+                    <p>
+
+                        Excellent communication,
+
+                        transparent costing
+
+                        and outstanding project management.
+
+                    </p>
+
+                    <div class="client">
+
+                        <img src="https://i.pravatar.cc/100?img=18">
+
+                        <div>
+
+                            <h4>
+
+                                Ahmed Raza
+
+                            </h4>
+
+                            <span>
+
+                                Rawalpindi
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="testimonial-card"
+
+                    data-aos="fade-up"
+
+                    data-aos-delay="300">
+
+                    <div class="stars">
+
+                        <i class="fa-solid fa-star"></i>
+
+                        <i class="fa-solid fa-star"></i>
+
+                        <i class="fa-solid fa-star"></i>
+
+                        <i class="fa-solid fa-star"></i>
+
+                        <i class="fa-solid fa-star"></i>
+
+                    </div>
+
+                    <p>
+
+                        Highly professional team with premium finishing.
+
+                        We strongly recommend H&S Developer.
+
+                    </p>
+
+                    <div class="client">
+
+                        <img src="https://i.pravatar.cc/100?img=31">
+
+                        <div>
+
+                            <h4>
+
+                                Bilal Khan
+
+                            </h4>
+
+                            <span>
+
+                                Lahore
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </section>
 
-    <!-- Centered Footer -->
-    <footer class="site-footer">
-        <div class="footer-content">
-            <h4 style="font-size: 1.5rem; color: white; margin-bottom: 10px;">H&S Developer</h4>
-            <p>Building the future with precision, trust, and premium quality materials.</p>
+    <!-- ===================================================== -->
+    <!-- CONTACT -->
+    <!-- ===================================================== -->
+
+    <section class="contact section" id="contact">
+
+        <div class="container">
+
+            <div class="contact-wrapper">
+
+                <div class="contact-left">
+
+                    <span>
+
+                        CONTACT US
+
+                    </span>
+
+                    <h2>
+
+                        Let's Build Something Great
+
+                    </h2>
+
+                    <p>
+
+                        Contact us today for residential,
+
+                        commercial,
+
+                        grey structure,
+
+                        renovation,
+
+                        and interior projects.
+
+                    </p>
+
+                    <div class="contact-info">
+
+                        <div>
+
+                            <i class="fa-solid fa-phone"></i>
+
+                            <span>
+
+                                +92 302 5113791
+
+                            </span>
+
+                        </div>
+
+                        <div>
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                            <span>
+
+                                info@hnsdeveloper.com
+
+                            </span>
+
+                        </div>
+
+                        <div>
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                            <span>
+
+                                Islamabad, Pakistan
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="contact-right">
+
+                    <form>
+
+                        <input
+
+                            type="text"
+
+                            placeholder="Full Name"
+
+                            required>
+
+                        <input
+
+                            type="email"
+
+                            placeholder="Email Address"
+
+                            required>
+
+                        <input
+
+                            type="tel"
+
+                            placeholder="Phone Number"
+
+                            required>
+
+                        <select>
+
+                            <option>
+
+                                Select Service
+
+                            </option>
+
+                            <option>
+
+                                Turnkey Construction
+
+                            </option>
+
+                            <option>
+
+                                Grey Structure
+
+                            </option>
+
+                            <option>
+
+                                Interior Design
+
+                            </option>
+
+                            <option>
+
+                                Renovation
+
+                            </option>
+
+                        </select>
+
+                        <textarea
+
+                            rows="6"
+
+                            placeholder="Tell us about your project..."></textarea>
+
+                        <button
+
+                            class="btn-primary"
+
+                            type="submit">
+
+                            Send Inquiry
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
         </div>
-        <div class="footer-bottom">
-            <p>All rights reserved &copy; 2026. Developed by Adbismarketinghub.</p>
+
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- FOOTER -->
+    <!-- ===================================================== -->
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div>
+
+                    <h2>
+
+                        H&S Developer
+
+                    </h2>
+
+                    <p>
+
+                        Premium Construction,
+
+                        Architecture,
+
+                        Renovation,
+
+                        Grey Structure
+
+                        and Luxury Interior Solutions.
+
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <h3>
+
+                        Quick Links
+
+                    </h3>
+
+                    <ul>
+
+                        <li><a href="#hero">Home</a></li>
+
+                        <li><a href="#about">About</a></li>
+
+                        <li><a href="#services">Services</a></li>
+
+                        <li><a href="#projects">Projects</a></li>
+
+                        <li><a href="#contact">Contact</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div>
+
+                    <h3>
+
+                        Services
+
+                    </h3>
+
+                    <ul>
+
+                        <li>Grey Structure</li>
+
+                        <li>Turnkey Projects</li>
+
+                        <li>Commercial Buildings</li>
+
+                        <li>Renovation</li>
+
+                        <li>Interior Design</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <div class="footer-bottom">
+
+                <p>
+
+                    © 2026 H&S Developer.
+
+                    All Rights Reserved.
+
+                    Designed & Developed by
+
+                    AdBis Marketing Hub.
+
+                </p>
+
+            </div>
+
         </div>
+
     </footer>
 
+    <!-- Floating Buttons -->
+
+    <a href="#" class="back-to-top">
+
+        <i class="fa-solid fa-arrow-up"></i>
+
+    </a>
+
+    <a href="https://wa.me/923058694564"
+
+        class="whatsapp-btn"
+
+        target="_blank">
+
+        <i class="fa-brands fa-whatsapp"></i>
+
+    </a>
+
+    <!-- JavaScript Libraries -->
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
     <script src="script.js"></script>
+
 </body>
+
 </html>
