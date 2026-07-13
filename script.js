@@ -1,5 +1,5 @@
 // ==========================================
-// 1. THREE.JS BACKGROUND (High-Status Particles & Abstract Flow)
+// 1. HIGH-PERFORMANCE 3D ENGINE (Optimized)
 // ==========================================
 const container = document.getElementById('canvas-wrapper');
 const scene = new THREE.Scene();
@@ -8,26 +8,22 @@ camera.position.z = 5;
 
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); 
 container.appendChild(renderer.domElement);
 
-// Creating a massive subtle particle grid for premium tech feel
 const particlesGeometry = new THREE.BufferGeometry();
-const particlesCount = 1500;
+const particlesCount = 1000;
 const posArray = new Float32Array(particlesCount * 3);
 for(let i = 0; i < particlesCount * 3; i++) {
-    posArray[i] = (Math.random() - 0.5) * 25; // Wide spread
+    posArray[i] = (Math.random() - 0.5) * 20;
 }
 particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-const particlesMaterial = new THREE.PointsMaterial({ size: 0.02, color: 0xff3333, transparent: true, opacity: 0.4 });
+const particlesMaterial = new THREE.PointsMaterial({ size: 0.02, color: 0xff3333, transparent: true, opacity: 0.3 });
 const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
 scene.add(particlesMesh);
 
-// Animation Loop for Canvas
 function animateCanvas() {
     requestAnimationFrame(animateCanvas);
     particlesMesh.rotation.y -= 0.0005; 
-    particlesMesh.rotation.x += 0.0002;
     renderer.render(scene, camera);
 }
 animateCanvas();
@@ -39,95 +35,110 @@ window.addEventListener('resize', () => {
 });
 
 // ==========================================
-// 2. HERO IMAGE CAROUSEL LOGIC
+// 2. HERO IMAGE CAROUSEL
 // ==========================================
 const slides = document.querySelectorAll('.slide');
 let currentSlide = 0;
-
-function nextSlide() {
+setInterval(() => {
     slides[currentSlide].classList.remove('active');
     currentSlide = (currentSlide + 1) % slides.length;
     slides[currentSlide].classList.add('active');
-}
-// Change image every 5 seconds
-setInterval(nextSlide, 5000);
+}, 5000);
 
 // ==========================================
-// 3. SCROLL REVEAL (Smooth Fade Ups)
+// 3. SCROLL REVEAL & SVG CIRCLE ANIMATION
 // ==========================================
-function reveal() {
-    var reveals = document.querySelectorAll(".reveal");
-    for (var i = 0; i < reveals.length; i++) {
-        var windowHeight = window.innerHeight;
-        var elementTop = reveals[i].getBoundingClientRect().top;
-        var elementVisible = 100;
-        if (elementTop < windowHeight - elementVisible) {
-            reveals[i].classList.add("active");
+function revealElements() {
+    const reveals = document.querySelectorAll(".reveal");
+    reveals.forEach(reveal => {
+        const windowHeight = window.innerHeight;
+        const elementTop = reveal.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 100) {
+            reveal.classList.add("active");
+            
+            // Trigger SVG Circle Animation if it's the milestones section
+            if(reveal.classList.contains('circles-container')) {
+                animateCircles();
+            }
         }
-    }
+    });
 }
-window.addEventListener("scroll", reveal);
-reveal();
+window.addEventListener("scroll", revealElements);
+revealElements();
 
-// ==========================================
-// 4. ANIMATED STATS COUNTER
-// ==========================================
-const counters = document.querySelectorAll('.counter');
-let hasCounted = false;
-
-window.addEventListener('scroll', () => {
-    const section = document.querySelector('.stats-section');
-    if(!section) return;
-    const sectionPos = section.getBoundingClientRect().top;
+let circlesAnimated = false;
+function animateCircles() {
+    if(circlesAnimated) return;
+    const circles = document.querySelectorAll('.svg-circle');
     
-    if (sectionPos < window.innerHeight && !hasCounted) {
-        counters.forEach(counter => {
-            const updateCount = () => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                const speed = 100; // Faster count
-                const inc = target / speed;
-
-                if (count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(updateCount, 15);
-                } else {
-                    counter.innerText = target;
-                }
-            };
-            updateCount();
-        });
-        hasCounted = true;
-    }
-});
-
-// ==========================================
-// 5. ESTIMATOR ALGORITHM
-// ==========================================
-document.getElementById('calculate-btn').addEventListener('click', () => {
-    const areaInput = document.getElementById('area-input').value;
-    const rateInput = document.getElementById('type-input').value;
-    const paintAddon = document.getElementById('feature-paint').checked ? parseFloat(document.getElementById('feature-paint').value) : 0;
-    const fallAddon = document.getElementById('feature-fall').checked ? parseFloat(document.getElementById('feature-fall').value) : 0;
-    
-    const resultBox = document.getElementById('result-box');
-    const totalCostDisplay = document.getElementById('total-cost');
-    
-    if (areaInput && areaInput > 0) {
-        const baseCost = parseFloat(areaInput) * parseFloat(rateInput);
-        const totalCost = baseCost + paintAddon + fallAddon;
+    circles.forEach(circle => {
+        const percent = circle.getAttribute('data-percent');
+        const progressCircle = circle.querySelector('.progress');
+        const textElement = circle.querySelector('.circle-text');
         
-        totalCostDisplay.innerText = 'Rs. ' + totalCost.toLocaleString('en-PK');
-        resultBox.style.display = 'block';
-    } else {
-        alert('Invalid Request: Please input covered area in Sq. Ft.');
-    }
-});
+        // 314 is the circumference of r=50 (2 * pi * 50)
+        const offset = 314 - (314 * percent) / 100;
+        progressCircle.style.strokeDashoffset = offset;
+
+        // Number counter logic for circles
+        let count = 0;
+        const speed = 20; 
+        const interval = setInterval(() => {
+            if(count >= percent) {
+                clearInterval(interval);
+            } else {
+                count++;
+                textElement.innerText = count + '%';
+            }
+        }, speed);
+    });
+    circlesAnimated = true;
+}
 
 // ==========================================
-// 6. FORM SUBMISSION INTERCEPT
+// 4. $500 ADVANCED ESTIMATOR ALGORITHM
 // ==========================================
-document.getElementById('lead-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert('Request Secured. System will forward parameters to your Adbismarketinghub CRM.');
+const areaSlider = document.getElementById('area-slider');
+const areaValDisplay = document.getElementById('area-val');
+const tierSelect = document.getElementById('tier-select');
+const addons = document.querySelectorAll('.custom-checkbox input');
+
+const recBase = document.getElementById('rec-base');
+const recAddons = document.getElementById('rec-addons');
+const recTotal = document.getElementById('rec-total');
+
+function calculateQuote() {
+    const area = parseFloat(areaSlider.value);
+    const rate = parseFloat(tierSelect.value);
+    
+    // Calculate Base
+    const baseCost = area * rate;
+    
+    // Calculate Addons
+    let addonCost = 0;
+    addons.forEach(box => {
+        if(box.checked) addonCost += parseFloat(box.value);
+    });
+
+    const totalCost = baseCost + addonCost;
+
+    // Update UI Elements
+    areaValDisplay.innerText = area;
+    recBase.innerText = 'Rs. ' + baseCost.toLocaleString('en-PK');
+    recAddons.innerText = 'Rs. ' + addonCost.toLocaleString('en-PK');
+    recTotal.innerText = 'Rs. ' + totalCost.toLocaleString('en-PK');
+}
+
+// Event Listeners for real-time calculation
+areaSlider.addEventListener('input', calculateQuote);
+tierSelect.addEventListener('change', calculateQuote);
+addons.forEach(box => box.addEventListener('change', calculateQuote));
+
+// Initial Calculation on Load
+calculateQuote();
+
+// Formal Quote Button
+document.getElementById('calc-btn').addEventListener('click', () => {
+    const finalAmt = document.getElementById('rec-total').innerText;
+    alert(`Formal Quote Generated for ${finalAmt}. Integration with Adbismarketinghub CRM pending.`);
 });
