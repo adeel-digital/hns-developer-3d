@@ -2,241 +2,257 @@
 <html lang="en" class="dark-theme">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <meta name="description" content="H&S Developer - High-Yield Commercial & Residential Architecture">
-    <title>H&S Developer | Advanced Structural Engineering</title>
+    <!-- Viewport fix to prevent horizontal scrolling on mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="H&S Developer - Premium Construction & Renovation Services">
+    <title>H&S Developer | Premium Construction</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Three.js for Complex 3D Engine -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body data-scroll-container>
+<body>
 
+    <!-- Interactive 3D WebGL Background -->
     <div id="webgl-container" aria-hidden="true"></div>
 
-    <div class="top-bar">
-        <div class="top-bar__info">
-            <span><i class="fa-solid fa-clock"></i> Mon - Sat: 9:00 AM - 6:00 PM</span>
-            <span><i class="fa-solid fa-location-arrow"></i> Blue Area, Islamabad</span>
-        </div>
-        <div class="top-bar__socials">
-            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        </div>
-    </div>
-
+    <!-- Navigation -->
     <nav class="navbar glass-morph" id="main-nav">
         <div class="nav-container">
             <a href="#" class="brand">
-                <img src="HS.jpg" alt="H&S Developer" class="brand__logo">
-                <div class="brand__text">H&S <span class="accent-color">DEV</span></div>
+                <img src="HS.jpg" alt="H&S Developer Logo" class="brand__logo" onerror="this.src='https://images.unsplash.com/photo-1541888086925-0c13d4f47854?w=100&h=100&fit=crop'">
+                <div class="brand__text">H&S <span class="accent-color">DEVELOPER</span></div>
             </a>
             
-            <button class="hamburger-menu" id="mobile-toggle" aria-expanded="false">
+            <button class="hamburger-menu" id="mobile-toggle" aria-label="Menu">
                 <span class="bar"></span><span class="bar"></span><span class="bar"></span>
             </button>
 
             <ul class="nav-list" id="nav-menu">
-                <li class="nav-item"><a href="#hero" class="nav-link">Initiate</a></li>
-                <li class="nav-item"><a href="#metrics" class="nav-link">Metrics</a></li>
-                <li class="nav-item"><a href="#portfolio" class="nav-link">Masterpieces</a></li>
-                <li class="nav-item"><a href="#services" class="nav-link">Divisions</a></li>
-                <li class="nav-item"><a href="#estimator" class="nav-link">Algorithm</a></li>
-                <li class="nav-item"><a href="#contact" class="btn btn--primary nav-link">Secure Quote</a></li>
+                <li class="nav-item"><a href="#hero" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About Us</a></li>
+                <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="#estimator" class="nav-link">Cost Calculator</a></li>
+                <li class="nav-item"><a href="#contact" class="btn btn--primary nav-link">Get a Quote</a></li>
             </ul>
         </div>
     </nav>
 
+    <!-- Hero Section (Images 1, 2, 3) -->
     <header class="hero" id="hero">
-        <div class="hero__slider" id="bg-slider">
-            </div>
+        <div class="hero__slider">
+            <div class="hero__slide is-active" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2000&auto=format&fit=crop');"></div>
+            <div class="hero__slide" style="background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2000&auto=format&fit=crop');"></div>
+            <div class="hero__slide" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop');"></div>
+        </div>
         <div class="hero__content glass-morph scroll-reveal">
-            <div class="badge badge--glow">Vanguard Architectural Systems</div>
-            <h1 class="hero__title">Engineer Your <br><span class="accent-color">Supremacy.</span></h1>
-            <p class="hero__subtitle">Deploying elite craftsmanship and automated structural workflows for global standards.</p>
+            <div class="badge badge--glow">Premium Construction Services</div>
+            <h1 class="hero__title">Build Your <br><span class="accent-color">Dream Space.</span></h1>
+            <p class="hero__subtitle">We provide top-quality construction, grey structure, and premium finishing services for residential and commercial projects.</p>
             <div class="hero__actions">
-                <a href="#estimator" class="btn btn--primary">Calculate ROI</a>
-                <a href="#portfolio" class="btn btn--outline">View Archive</a>
+                <a href="#estimator" class="btn btn--primary">Calculate Cost</a>
+                <a href="#services" class="btn btn--outline">Our Services</a>
             </div>
         </div>
     </header>
 
-    <section class="metrics" id="metrics">
+    <!-- Milestones Section -->
+    <section class="metrics" id="about">
         <div class="section-header scroll-reveal">
-            <h2 class="subtitle">Empirical Evidence</h2>
-            <h3 class="title">Celebrating Milestones, Building a Legacy</h3>
+            <h2 class="subtitle">Why Choose Us</h2>
+            <h3 class="title">Delivering Excellence Every Time</h3>
+            <p style="color: #ccc; max-width: 600px; margin: 0 auto;">We focus on saving your money, delivering on time, and providing the best quality building materials available in the market.</p>
         </div>
         <div class="metrics__grid scroll-reveal">
+            <article class="metric-card">
+                <div class="svg-progress" data-target="100">
+                    <svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="50"/><circle class="bar" cx="60" cy="60" r="50"/></svg>
+                    <span class="counter">0</span><span class="symbol">%</span>
+                </div>
+                <h4 class="metric-card__title">Client Satisfaction</h4>
+            </article>
             <article class="metric-card">
                 <div class="svg-progress" data-target="95">
                     <svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="50"/><circle class="bar" cx="60" cy="60" r="50"/></svg>
                     <span class="counter">0</span><span class="symbol">%</span>
                 </div>
-                <h4 class="metric-card__title">Cost Efficiency</h4>
+                <h4 class="metric-card__title">On-Time Delivery</h4>
             </article>
             <article class="metric-card">
                 <div class="svg-progress" data-target="100">
                     <svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="50"/><circle class="bar" cx="60" cy="60" r="50"/></svg>
                     <span class="counter">0</span><span class="symbol">%</span>
                 </div>
-                <h4 class="metric-card__title">Timely Delivery</h4>
-            </article>
-            <article class="metric-card">
-                <div class="svg-progress" data-target="92">
-                    <svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="50"/><circle class="bar" cx="60" cy="60" r="50"/></svg>
-                    <span class="counter">0</span><span class="symbol">%</span>
-                </div>
-                <h4 class="metric-card__title">Tech Innovation</h4>
+                <h4 class="metric-card__title">Quality Assurance</h4>
             </article>
         </div>
     </section>
 
-    <section class="portfolio" id="portfolio">
-        <div class="section-header scroll-reveal">
-            <h2 class="title">Architectural <span class="accent-color">Archive</span></h2>
-        </div>
-        <div class="portfolio__filters scroll-reveal">
-            <button class="filter-btn active" data-filter="all">All Specs</button>
-            <button class="filter-btn" data-filter="commercial">Commercial</button>
-            <button class="filter-btn" data-filter="residential">Residential</button>
-        </div>
-        <div class="portfolio__grid">
-            <div class="portfolio-item glass-morph scroll-reveal" data-category="commercial">
-                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800" alt="Plaza" loading="lazy">
-                <div class="portfolio-item__overlay">
-                    <h4>Atrium Hills Plaza</h4>
-                    <a href="#" class="btn btn--small">Analyze Spec</a>
-                </div>
-            </div>
-            <div class="portfolio-item glass-morph scroll-reveal" data-category="residential">
-                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800" alt="Villa" loading="lazy">
-                <div class="portfolio-item__overlay">
-                    <h4>DHA Phase 8 Villa</h4>
-                    <a href="#" class="btn btn--small">Analyze Spec</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <!-- Services Grid (Images 4, 5, 6, 7, 8) -->
     <section class="services" id="services">
         <div class="section-header scroll-reveal">
-            <h2 class="title">Operational <span class="accent-color">Divisions</span></h2>
+            <h2 class="subtitle">What We Do</h2>
+            <h3 class="title">Our Main <span class="accent-color">Services</span></h3>
         </div>
         <div class="services__grid">
+            <!-- Service 1 -->
             <div class="service-card scroll-reveal">
-                <div class="service-card__bg" style="background-image: url('https://images.unsplash.com/photo-1541888086925-0c13d4f47854?q=80&w=800');"></div>
+                <div class="service-card__bg" style="background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=800&auto=format&fit=crop');"></div>
                 <div class="service-card__front">
-                    <i class="fa-solid fa-city"></i>
-                    <h3>Commercial Build</h3>
+                    <i class="fa-solid fa-house-chimney"></i>
+                    <h3>Turnkey Construction</h3>
                 </div>
                 <div class="service-card__back glass-morph">
-                    <h3>Commercial</h3>
-                    <p>Executing high-yield structures requiring heavy machinery and precise tolerances.</p>
+                    <h3>Turnkey Build</h3>
+                    <p>Complete end-to-end construction. You hand us the plot, we hand you the keys to your dream home.</p>
                 </div>
             </div>
+             <!-- Service 2 -->
              <div class="service-card scroll-reveal">
-                <div class="service-card__bg" style="background-image: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800');"></div>
+                <div class="service-card__bg" style="background-image: url('https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=800&auto=format&fit=crop');"></div>
                 <div class="service-card__front">
-                    <i class="fa-solid fa-paint-roller"></i>
-                    <h3>Premium Finishing</h3>
+                    <i class="fa-solid fa-trowel-bricks"></i>
+                    <h3>Grey Structure</h3>
                 </div>
                 <div class="service-card__back glass-morph">
-                    <h3>Finishing</h3>
-                    <p>Imported PU panels, structural glazing, and flawless MDF integration.</p>
+                    <h3>Grey Structure</h3>
+                    <p>Solid foundation and brickwork using top-grade cement, steel, and premium construction techniques.</p>
+                </div>
+            </div>
+            <!-- Service 3 -->
+            <div class="service-card scroll-reveal">
+                <div class="service-card__bg" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop');"></div>
+                <div class="service-card__front">
+                    <i class="fa-solid fa-city"></i>
+                    <h3>Commercial Fit-outs</h3>
+                </div>
+                <div class="service-card__back glass-morph">
+                    <h3>Commercial Plazas</h3>
+                    <p>Building high-quality commercial plazas, restaurants, and office spaces designed for modern business.</p>
+                </div>
+            </div>
+            <!-- Service 4 -->
+            <div class="service-card scroll-reveal">
+                <div class="service-card__bg" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=800&auto=format&fit=crop');"></div>
+                <div class="service-card__front">
+                    <i class="fa-solid fa-hammer"></i>
+                    <h3>Home Renovation</h3>
+                </div>
+                <div class="service-card__back glass-morph">
+                    <h3>Renovation</h3>
+                    <p>Upgrading your old spaces with modern layouts, better plumbing, and fresh architectural designs.</p>
+                </div>
+            </div>
+            <!-- Service 5 -->
+            <div class="service-card scroll-reveal">
+                <div class="service-card__bg" style="background-image: url('https://images.unsplash.com/photo-1622372738946-62e02505feb3?q=80&w=800&auto=format&fit=crop');"></div>
+                <div class="service-card__front">
+                    <i class="fa-solid fa-paint-roller"></i>
+                    <h3>Finishing & Interiors</h3>
+                </div>
+                <div class="service-card__back glass-morph">
+                    <h3>Premium Finishing</h3>
+                    <p>False ceilings, marble fixing, custom woodwork, cabinetry, and imported PU panel installations.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Cost Estimator Section -->
     <section class="estimator" id="estimator">
         <div class="estimator__container glass-morph scroll-reveal">
             <div class="section-header">
-                <h2 class="title">Algorithmic <span class="accent-color">Projection</span></h2>
+                <h2 class="title">Cost <span class="accent-color">Calculator</span></h2>
+                <p>Get an instant estimate for your project. No hidden fees.</p>
             </div>
             <div class="estimator__layout">
                 <div class="estimator__inputs">
                     <div class="form-control">
-                        <label>Structural Area (Sq.Ft): <span id="area-display" class="accent-color">2500</span></label>
-                        <input type="range" id="area-slider" class="custom-slider" min="500" max="10000" step="50" value="2500">
+                        <label>Total Plot Area (Sq.Ft): <span id="area-display" class="accent-color">2500</span></label>
+                        <input type="range" id="area-slider" class="custom-slider" min="500" max="10000" step="100" value="2500">
                     </div>
                     <div class="form-control">
-                        <label>Execution Tier</label>
+                        <label>Select Construction Type</label>
                         <select id="tier-select" class="custom-select">
-                            <option value="3500">Grey Structure Build - Rs. 3,500/sqft</option>
-                            <option value="5500">Standard Finishing - Rs. 5,500/sqft</option>
-                            <option value="8500">Turnkey Elite - Rs. 8,500/sqft</option>
+                            <option value="3500">Grey Structure Only - Rs. 3,500/sq.ft</option>
+                            <option value="5500">Standard Turnkey Build - Rs. 5,500/sq.ft</option>
+                            <option value="8500">Luxury Premium Build - Rs. 8,500/sq.ft</option>
                         </select>
                     </div>
                     <div class="form-control">
-                        <label>Technological Integrations</label>
+                        <label>Extra Add-ons</label>
                         <div class="checkbox-wrapper">
-                            <label class="custom-cb"><input type="checkbox" data-cost="1500000"><span class="box"></span> Smart Home OS</label>
-                            <label class="custom-cb"><input type="checkbox" data-cost="1200000"><span class="box"></span> 10kW Solar Array</label>
-                            <label class="custom-cb"><input type="checkbox" data-cost="800000"><span class="box"></span> Imported PU Styling</label>
+                            <label class="custom-cb"><input type="checkbox" data-cost="1500000"><span class="box"></span> Smart Home System Automation</label>
+                            <label class="custom-cb"><input type="checkbox" data-cost="1200000"><span class="box"></span> 10kW Solar Panel System</label>
+                            <label class="custom-cb"><input type="checkbox" data-cost="800000"><span class="box"></span> Imported Interior Panels (PU/MDF)</label>
                         </div>
                     </div>
                 </div>
                 <div class="estimator__receipt">
-                    <h3>Fiscal Analysis</h3>
-                    <div class="receipt-row"><span>Base Capital:</span> <span id="base-cost">Rs. 0</span></div>
-                    <div class="receipt-row"><span>Integrations:</span> <span id="addon-cost">Rs. 0</span></div>
+                    <h3>Estimated Price</h3>
+                    <div class="receipt-row"><span>Base Construction:</span> <span id="base-cost">Rs. 0</span></div>
+                    <div class="receipt-row"><span>Extra Features:</span> <span id="addon-cost">Rs. 0</span></div>
                     <hr>
-                    <div class="receipt-row total"><span>Total Required:</span> <span id="total-cost" class="accent-color">Rs. 0</span></div>
+                    <div class="receipt-row total"><span>Total Estimate:</span> <span id="total-cost" class="accent-color">Rs. 0</span></div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Exact Contact Form matching your Screenshot -->
     <section class="contact" id="contact">
-        <div class="contact__grid glass-morph scroll-reveal">
+        <div class="contact__grid scroll-reveal">
+            <!-- Left Info Side -->
             <div class="contact__info">
-                <h2 class="title">Initialize <span class="accent-color">Deployment</span></h2>
-                <p>Submit your architectural parameters. Our engineering board will analyze the specs within 24 hours.</p>
-                <ul class="contact-list">
-                    <li><i class="fa-solid fa-phone"></i> +92 302 511 3791</li>
-                    <li><i class="fa-solid fa-envelope"></i> info@hnsdeveloper.com</li>
-                    <li><i class="fa-solid fa-location-dot"></i> Islamabad, PK</li>
-                </ul>
+                <img src="HS.jpg" alt="Logo" class="contact__logo" onerror="this.src='https://images.unsplash.com/photo-1541888086925-0c13d4f47854?w=50&h=50&fit=crop'">
+                <h2 class="title">Engineer Your Mega Project</h2>
+                <p>Connect with our primary architectural execution office. We deploy heavy machinery and elite craftsmanship to build your vision from the ground up.</p>
+                <div class="contact-list">
+                    <div class="contact-item"><i class="fa-solid fa-phone"></i> <span>0302 511 3791</span></div>
+                    <div class="contact-item"><i class="fa-solid fa-envelope"></i> <span>info@hnsdeveloper.com</span></div>
+                    <div class="contact-item"><i class="fa-solid fa-location-dot"></i> <span>Islamabad, Pakistan</span></div>
+                </div>
             </div>
-            <form action="https://formsubmit.co/info@hnsdeveloper.com" method="POST" class="contact__form" id="secure-form">
-                <input type="hidden" name="_captcha" value="false">
-                <div class="input-group">
-                    <input type="text" name="Client Name" required placeholder=" ">
-                    <label>Principal Name</label>
-                </div>
-                <div class="input-group">
-                    <input type="tel" name="Contact" required placeholder=" ">
-                    <label>Secure Number</label>
-                </div>
-                <div class="input-group">
-                    <select name="Directive" required>
-                        <option value="" disabled selected>Select Primary Directive</option>
-                        <option value="Commercial">Commercial Execution</option>
-                        <option value="Residential">Elite Residential</option>
+            
+            <!-- Right Form Side (Solid Background inputs) -->
+            <div class="contact__form-wrapper">
+                <form action="https://formsubmit.co/info@hnsdeveloper.com" method="POST" class="solid-form">
+                    <input type="hidden" name="_captcha" value="false">
+                    
+                    <input type="text" name="Full_Name" class="solid-input" placeholder="Full Name" required>
+                    <input type="email" name="Email_Address" class="solid-input" placeholder="Email Address" required>
+                    <input type="tel" name="Phone_Number" class="solid-input" placeholder="Phone Number" required>
+                    
+                    <!-- Exact Dropdown Options from Screenshot -->
+                    <select name="Primary_Requirement" class="solid-input" required>
+                        <option value="" disabled selected>Select Primary Requirement</option>
+                        <option value="Turnkey Construction">1. Turnkey Construction (End-to-End)</option>
+                        <option value="Grey Structure">2. Grey Structure Development</option>
+                        <option value="Commercial Restaurant">3. Commercial Restaurant/Fit-out</option>
+                        <option value="Home Renovation">4. Complete Home Renovation</option>
+                        <option value="False Ceiling">5. False Ceiling Installation</option>
+                        <option value="Marble Fixing">6. Marble Fixing</option>
+                        <option value="Custom Wooden Doors">7. Custom Wooden Doors</option>
+                        <option value="Cabinetry Solutions">8. Cabinetry Solutions</option>
+                        <option value="Paint Polish Treatment">9. Paint, Polish & Treatment</option>
                     </select>
-                </div>
-                <div class="input-group">
-                    <textarea name="Specs" required placeholder=" " rows="4"></textarea>
-                    <label>Structural Vision / Plot Coordinates</label>
-                </div>
-                <button type="submit" class="btn btn--primary btn--block">Transmit Data</button>
-            </form>
+
+                    <textarea name="Project_Details" class="solid-input" rows="4" placeholder="Describe your plot size, location, and structural vision..." required></textarea>
+                    
+                    <button type="submit" class="btn solid-submit">SUBMIT CONSTRUCTION INQUIRY</button>
+                </form>
+            </div>
         </div>
     </section>
 
-    <footer class="site-footer glass-morph">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>H&S Developer</h4>
-                <p>Architecting the future through automated systems and high-status engineering.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Legal</h4>
-                <a href="#">Terms of Service</a>
-                <a href="#">Privacy Policy</a>
-            </div>
+    <!-- Centered Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <h4 style="font-size: 1.5rem; color: white; margin-bottom: 10px;">H&S Developer</h4>
+            <p>Building the future with precision, trust, and premium quality materials.</p>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Developed by Adbismarketinghub. All Rights Reserved.</p>
+            <p>All rights reserved &copy; 2026. Developed by Adbismarketinghub.</p>
         </div>
     </footer>
 
