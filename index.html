@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H&S Developer | High-End Construction & Architecture</title>
+    <title>H&S Developer | Premium Construction & Design</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,19 +15,20 @@
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#services">Services</a></li>
-            <li><a href="#estimator">Cost Estimator</a></li>
+            <li><a href="#estimator">Estimator</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
-        <button class="cta-btn">Book Consultation</button>
+        <a href="#contact" class="cta-btn">Book Consultation</a>
     </nav>
 
     <section class="hero" id="home">
-        <div class="hero-content">
+        <div class="hero-content fade-in">
             <div class="badge">Next-Gen Architecture</div>
             <h1>Build Your <span class="highlight">Legacy.</span></h1>
-            <p>We transform abstract concepts into premium residential and commercial realities using automated estimation systems and 3D precision.</p>
+            <p>Transforming concepts into high-end architectural realities with precision engineering and automated systems.</p>
             <div class="btn-group">
-                <a href="#estimator" class="cta-btn">Calculate Budget</a>
-                <a href="#services" class="secondary-btn">Explore Systems</a>
+                <a href="#estimator" class="cta-btn">Calculate Estimate</a>
+                <a href="#services" class="secondary-btn">Our Services</a>
             </div>
         </div>
         <div class="canvas-container">
@@ -35,51 +36,76 @@
         </div>
     </section>
 
+    <section class="stats-section">
+        <div class="stat-box">
+            <h2 class="counter" data-target="150">0</h2>
+            <p>Premium Projects</p>
+        </div>
+        <div class="stat-box">
+            <h2 class="counter" data-target="25">0</h2>
+            <p>Cities Covered</p>
+        </div>
+        <div class="stat-box">
+            <h2><span class="counter" data-target="100">0</span>%</h2>
+            <p>Client Satisfaction</p>
+        </div>
+    </section>
+
     <section class="services" id="services">
-        <div class="section-header">
+        <div class="section-header fade-in">
             <h2>Our Core <span class="highlight">Verticals</span></h2>
-            <p>Systematized solutions for maximum structural integrity and aesthetic dominance.</p>
+            <p>Systematized solutions for maximum structural integrity.</p>
         </div>
         <div class="grid-container">
-            <div class="service-card">
+            <div class="service-card reveal">
                 <i class="fa-solid fa-building icon"></i>
-                <h3>Commercial Structures</h3>
-                <p>High-yield commercial plazas and corporate office fit-outs built for scale.</p>
+                <div class="card-content">
+                    <h3>Commercial Plazas</h3>
+                    <p>High-yield commercial structures engineered for scale.</p>
+                </div>
             </div>
-            <div class="service-card">
+            <div class="service-card reveal">
                 <i class="fa-solid fa-house-chimney icon"></i>
-                <h3>Luxury Residential</h3>
-                <p>Aesthetic refinement and smart-home integration for high-net-worth clients.</p>
+                <div class="card-content">
+                    <h3>Luxury Residential</h3>
+                    <p>Sophisticated designs and smart-home integration.</p>
+                </div>
             </div>
-            <div class="service-card">
+            <div class="service-card reveal">
                 <i class="fa-solid fa-hammer icon"></i>
-                <h3>Premium Finishing</h3>
-                <p>Top-tier material sourcing from PU panels to MDF ceilings for flawless interiors.</p>
+                <div class="card-content">
+                    <h3>Premium Finishing</h3>
+                    <p>Top-tier materials including PU panels and MDF styling.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <section class="estimator-section" id="estimator">
-        <div class="estimator-container">
-            <h2>Smart Project <span class="highlight">Estimator</span></h2>
-            <p style="text-align: center; color: #9ca3af; margin-bottom: 30px;">Generate a real-time financial projection for your next development.</p>
+        <div class="estimator-container reveal">
+            <h2>Smart Cost <span class="highlight">Estimator</span></h2>
+            <p style="text-align:center; color:#9ca3af; margin-bottom:20px;">Get a real-time financial projection.</p>
             
             <div class="form-group">
                 <label>Total Covered Area (Sq. Ft.)</label>
                 <input type="number" id="area-input" placeholder="e.g. 2500" min="1">
             </div>
-            
             <div class="form-group">
-                <label>Development Tier</label>
+                <label>Construction Tier</label>
                 <select id="type-input">
-                    <option value="3500">Grey Structure Build (Rs. 3,500 / sq. ft.)</option>
+                    <option value="3500">Grey Structure (Rs. 3,500 / sq. ft.)</option>
                     <option value="5500">Standard Finishing (Rs. 5,500 / sq. ft.)</option>
                     <option value="8500">High-Status Luxury (Rs. 8,500 / sq. ft.)</option>
                 </select>
             </div>
-            
+            <div class="form-group">
+                <label>Add-ons</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" id="feature-paint" value="500000"> Premium Paint & Polish (+ Rs. 5 Lac)</label>
+                    <label><input type="checkbox" id="feature-fall" value="300000"> Designer False Ceiling (+ Rs. 3 Lac)</label>
+                </div>
+            </div>
             <button id="calculate-btn" class="cta-btn block-btn">Run Algorithm</button>
-            
             <div id="result-box" class="result-box">
                 <p>Estimated Capital Required:</p>
                 <h3 id="total-cost" class="highlight">Rs. 0</h3>
@@ -87,11 +113,34 @@
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="logo">H&S <span class="highlight">DEVELOPER</span></div>
-            <p>© 2026 Engineered for Excellence. All rights reserved.</p>
+    <section class="contact-section" id="contact">
+        <div class="contact-container reveal">
+            <h2>Initiate <span class="highlight">Project</span></h2>
+            <form id="lead-form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" placeholder="+92 300 0000000" required>
+                </div>
+                <div class="form-group">
+                    <label>Project Interest (Select Multiple)</label>
+                    <div class="checkbox-grid">
+                        <label><input type="checkbox" name="interest" value="Commercial Build"> Commercial Build</label>
+                        <label><input type="checkbox" name="interest" value="Luxury Interior"> Luxury Interior</label>
+                        <label><input type="checkbox" name="interest" value="Grey Structure"> Grey Structure</label>
+                        <label><input type="checkbox" name="interest" value="Renovation"> Renovation / Finishing</label>
+                    </div>
+                </div>
+                <button type="submit" class="cta-btn block-btn">Submit Request</button>
+            </form>
         </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 H&S Developer. Engineered for Excellence.</p>
     </footer>
 
     <script src="script.js"></script>
