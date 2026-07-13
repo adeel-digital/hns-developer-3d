@@ -1,15 +1,20 @@
-/**
- * H&S Developer - Enterprise Frontend Architecture
- * Developed by: Adbismarketinghub
- * Standard: ES6+ Class Based Modules
- */
+// =========================================================
+// H&S DEVELOPER - ADVANCED INTERACTIVE ENGINE
+// =========================================================
 
-class WebGLEngine {
+class Interactive3DEngine {
     constructor() {
         this.container = document.getElementById('webgl-container');
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
+        this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        
+        // Mouse Tracking variables
+        this.mouseX = 0;
+        this.mouseY = 0;
+        this.targetX = 0;
+        this.targetY = 0;
+        
         this.init();
     }
 
@@ -18,77 +23,104 @@ class WebGLEngine {
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         this.container.appendChild(this.renderer.domElement);
-        this.buildAbstractCore();
+        
+        this.buildComplexGeometry();
         this.bindEvents();
         this.animate();
     }
 
-    buildAbstractCore() {
-        // High-Density Particle Grid
+    buildComplexGeometry() {
+        // 1. Background Particles
         const pGeo = new THREE.BufferGeometry();
-        const pCount = 2000;
+        const pCount = 1000;
         const pPos = new Float32Array(pCount * 3);
-        for(let i = 0; i < pCount * 3; i++) pPos[i] = (Math.random() - 0.5) * 30;
+        for(let i = 0; i < pCount * 3; i++) {
+            pPos[i] = (Math.random() - 0.5) * 25;
+        }
         pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-        
-        const pMat = new THREE.PointsMaterial({ 
-            size: 0.03, color: 0xff3333, transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending 
-        });
+        const pMat = new THREE.PointsMaterial({ size: 0.04, color: 0xe63946, transparent: true, opacity: 0.5 });
         this.particles = new THREE.Points(pGeo, pMat);
         this.scene.add(this.particles);
 
-        // Advanced Wireframe Construct
-        this.constructGroup = new THREE.Group();
+        // 2. Complex Interactive Shape (TorusKnot inside Wireframe Sphere)
+        this.shapeGroup = new THREE.Group();
         
-        // Outer Geometry
-        const outerBox = new THREE.BoxGeometry(4, 4, 4);
-        const outerWire = new THREE.LineSegments(new THREE.EdgesGeometry(outerBox), new THREE.LineBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.5 }));
+        // Inner Core: Torus Knot
+        const innerGeo = new THREE.TorusKnotGeometry(1.2, 0.4, 100, 16);
+        const innerMat = new THREE.MeshBasicMaterial({ color: 0xe63946, wireframe: true, transparent: true, opacity: 0.8 });
+        this.innerShape = new THREE.Mesh(innerGeo, innerMat);
         
-        // Inner Core (Complex)
-        const innerShape = new THREE.IcosahedronGeometry(2, 2);
-        const innerMesh = new THREE.Mesh(innerShape, new THREE.MeshBasicMaterial({ color: 0xdc2626, wireframe: true, transparent: true, opacity: 0.8 }));
+        // Outer Shell: Icosahedron Wireframe
+        const outerGeo = new THREE.IcosahedronGeometry(2.5, 2);
+        const outerMat = new THREE.LineBasicMaterial({ color: 0x444444, transparent: true, opacity: 0.4 });
+        this.outerShape = new THREE.LineSegments(new THREE.EdgesGeometry(outerGeo), outerMat);
         
-        this.constructGroup.add(outerWire, innerMesh);
+        this.shapeGroup.add(this.innerShape);
+        this.shapeGroup.add(this.outerShape);
         
-        // Placement based on device
-        this.updateConstructPosition();
-        this.scene.add(this.constructGroup);
+        // Position it to the right on desktop, center on mobile
+        this.updatePosition();
+        this.scene.add(this.shapeGroup);
     }
 
-    updateConstructPosition() {
-        if(window.innerWidth < 992) this.constructGroup.position.set(0, 3, -4);
-        else this.constructGroup.position.set(4, 0, -2);
+    updatePosition() {
+        if(window.innerWidth < 992) {
+            this.shapeGroup.position.set(0, 3, -4);
+        } else {
+            this.shapeGroup.position.set(4, 0, -2);
+        }
     }
 
     bindEvents() {
+        // Window Resize
         window.addEventListener('resize', () => {
             this.camera.aspect = window.innerWidth / window.innerHeight;
             this.camera.updateProjectionMatrix();
             this.renderer.setSize(window.innerWidth, window.innerHeight);
-            this.updateConstructPosition();
+            this.updatePosition();
+        });
+
+        // Mouse Move Interaction
+        document.addEventListener('mousemove', (event) => {
+            this.mouseX = (event.clientX - window.innerWidth / 2);
+            this.mouseY = (event.clientY - window.innerHeight / 2);
         });
     }
 
     animate() {
         requestAnimationFrame(() => this.animate());
+        
+        // Default Rotation
         this.particles.rotation.y -= 0.0005;
-        this.constructGroup.rotation.x += 0.001;
-        this.constructGroup.rotation.y += 0.003;
-        this.constructGroup.children[1].rotation.z -= 0.002;
+        this.innerShape.rotation.x += 0.005;
+        this.innerShape.rotation.y += 0.005;
+        this.outerShape.rotation.y -= 0.002;
+        this.outerShape.rotation.z -= 0.001;
+
+        // Interactive Mouse Movement (Smooth Damping)
+        this.targetX = this.mouseX * 0.001;
+        this.targetY = this.mouseY * 0.001;
+        
+        this.shapeGroup.rotation.x += 0.05 * (this.targetY - this.shapeGroup.rotation.x);
+        this.shapeGroup.rotation.y += 0.05 * (this.targetX - this.shapeGroup.rotation.y);
+
         this.renderer.render(this.scene, this.camera);
     }
 }
 
+// =========================================================
+// UI CONTROLLER LOGIC
+// =========================================================
+
 class UIManager {
     constructor() {
-        this.initMobileMenu();
+        this.initMenu();
+        this.initSlider();
         this.initScrollReveal();
-        this.initMetricsObserver();
-        this.initPortfolioFilter();
         this.initEstimator();
     }
 
-    initMobileMenu() {
+    initMenu() {
         const toggle = document.getElementById('mobile-toggle');
         const menu = document.getElementById('nav-menu');
         const links = document.querySelectorAll('.nav-link');
@@ -96,14 +128,26 @@ class UIManager {
         toggle.addEventListener('click', () => {
             toggle.classList.toggle('is-active');
             menu.classList.toggle('is-active');
+            document.body.style.overflow = menu.classList.contains('is-active') ? 'hidden' : ''; // Prevent body scroll when menu open
         });
 
         links.forEach(link => {
             link.addEventListener('click', () => {
                 toggle.classList.remove('is-active');
                 menu.classList.remove('is-active');
+                document.body.style.overflow = '';
             });
         });
+    }
+
+    initSlider() {
+        const slides = document.querySelectorAll('.hero__slide');
+        let current = 0;
+        setInterval(() => {
+            slides[current].classList.remove('is-active');
+            current = (current + 1) % slides.length;
+            slides[current].classList.add('is-active');
+        }, 5000);
     }
 
     initScrollReveal() {
@@ -111,6 +155,10 @@ class UIManager {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
+                    // Check if it's the metrics section to animate SVG
+                    if(entry.target.classList.contains('metrics__grid')) {
+                        this.animateRings();
+                    }
                     observer.unobserve(entry.target);
                 }
             });
@@ -119,102 +167,62 @@ class UIManager {
         document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
     }
 
-    initMetricsObserver() {
-        let animated = false;
-        const observer = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting && !animated) {
-                this.animateSVGProgress();
-                animated = true;
-            }
-        });
-        const metricsSection = document.getElementById('metrics');
-        if(metricsSection) observer.observe(metricsSection);
-    }
-
-    animateSVGProgress() {
+    animateRings() {
         const rings = document.querySelectorAll('.svg-progress');
         rings.forEach(ring => {
             const target = parseInt(ring.getAttribute('data-target'));
-            const circle = ring.querySelector('.bar');
+            const bar = ring.querySelector('.bar');
             const counter = ring.querySelector('.counter');
             
-            // Calc offset based on 314 standard circumference
             const offset = 314 - (314 * target) / 100;
-            setTimeout(() => circle.style.strokeDashoffset = offset, 200);
+            setTimeout(() => { bar.style.strokeDashoffset = offset; }, 100);
 
-            // Number Counter
-            let current = 0;
+            let count = 0;
             const timer = setInterval(() => {
-                if(current >= target) clearInterval(timer);
-                else { current++; counter.innerText = current; }
-            }, 25);
-        });
-    }
-
-    initPortfolioFilter() {
-        const buttons = document.querySelectorAll('.filter-btn');
-        const items = document.querySelectorAll('.portfolio-item');
-
-        buttons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Active state toggle
-                buttons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                // Filter logic
-                const filter = btn.getAttribute('data-filter');
-                items.forEach(item => {
-                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                        item.style.display = 'block';
-                        setTimeout(() => item.style.opacity = '1', 50);
-                    } else {
-                        item.style.opacity = '0';
-                        setTimeout(() => item.style.display = 'none', 300);
-                    }
-                });
-            });
+                if(count >= target) clearInterval(timer);
+                else { count++; counter.innerText = count; }
+            }, 20);
         });
     }
 
     initEstimator() {
-        const areaSlider = document.getElementById('area-slider');
-        const areaDisp = document.getElementById('area-display');
-        const tierSel = document.getElementById('tier-select');
-        const addons = document.querySelectorAll('.custom-cb input');
+        const slider = document.getElementById('area-slider');
+        const display = document.getElementById('area-display');
+        const tier = document.getElementById('tier-select');
+        const checkboxes = document.querySelectorAll('.custom-cb input');
         
         const uiBase = document.getElementById('base-cost');
         const uiAddon = document.getElementById('addon-cost');
         const uiTotal = document.getElementById('total-cost');
 
         const calculate = () => {
-            const area = parseFloat(areaSlider.value);
-            const rate = parseFloat(tierSel.value);
+            const area = parseFloat(slider.value);
+            const rate = parseFloat(tier.value);
             
-            let addonTotal = 0;
-            addons.forEach(cb => { if(cb.checked) addonTotal += parseFloat(cb.getAttribute('data-cost')); });
+            let addonCost = 0;
+            checkboxes.forEach(cb => {
+                if(cb.checked) addonCost += parseFloat(cb.getAttribute('data-cost'));
+            });
 
-            const baseTotal = area * rate;
-            const finalTotal = baseTotal + addonTotal;
+            const baseCost = area * rate;
+            const totalCost = baseCost + addonCost;
 
-            // DOM Updates
-            areaDisp.innerText = area;
-            uiBase.innerText = 'Rs. ' + baseTotal.toLocaleString('en-PK');
-            uiAddon.innerText = 'Rs. ' + addonTotal.toLocaleString('en-PK');
-            uiTotal.innerText = 'Rs. ' + finalTotal.toLocaleString('en-PK');
+            display.innerText = area;
+            uiBase.innerText = 'Rs. ' + baseCost.toLocaleString('en-PK');
+            uiAddon.innerText = 'Rs. ' + addonCost.toLocaleString('en-PK');
+            uiTotal.innerText = 'Rs. ' + totalCost.toLocaleString('en-PK');
         };
 
-        // Event Binding
-        areaSlider.addEventListener('input', calculate);
-        tierSel.addEventListener('change', calculate);
-        addons.forEach(cb => cb.addEventListener('change', calculate));
+        slider.addEventListener('input', calculate);
+        tier.addEventListener('change', calculate);
+        checkboxes.forEach(cb => cb.addEventListener('change', calculate));
         
-        // Initial Fire
-        calculate();
+        calculate(); // Run once on load
     }
 }
 
-// Initialize Application Engine on DOM Load
+// Boot up systems
 document.addEventListener('DOMContentLoaded', () => {
-    const webgl = new WebGLEngine();
-    const ui = new UIManager();
+    new Interactive3DEngine();
+    new UIManager();
 });
