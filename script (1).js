@@ -7,10 +7,10 @@ if(!this.c)return;
 this.s=new THREE.Scene();
 this.cam=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.1,1000);
 this.cam.position.set(0,3,11);
-this.r=new THREE.WebGLRenderer({alpha:1,antialias:1});
-this.r.setPixelRatio(Math.min(devicePixelRatio,2));
+this.mobile=innerWidth<768||matchMedia("(pointer:coarse)").matches;
+this.r=new THREE.WebGLRenderer({alpha:1,antialias:!this.mobile});
+this.r.setPixelRatio(Math.min(devicePixelRatio,this.mobile?1.5:2));
 this.r.setSize(innerWidth,innerHeight);
-this.r.shadowMap.enabled=1;
 this.c.appendChild(this.r.domElement);
 this.clock=new THREE.Clock();
 this.mx=0;this.my=0;
@@ -44,7 +44,7 @@ this.s.add(p);
 
 particles(){
 
-let g=new THREE.BufferGeometry(),v=[],n=5000;
+let g=new THREE.BufferGeometry(),v=[],n=this.mobile?1800:5000;
 
 for(let i=0;i<n;i++)
 v.push((Math.random()-.5)*80,Math.random()*30,(Math.random()-.5)*80);
@@ -142,7 +142,9 @@ let m=new THREE.MeshStandardMaterial({
 color:0x555555
 });
 
-for(let i=0;i<40;i++){
+let boxCount=this.mobile?18:40;
+
+for(let i=0;i<boxCount;i++){
 
 let b=new THREE.Mesh(
 
@@ -251,11 +253,64 @@ class UI{
 
 constructor(){
 
+this.aos();
+
 this.preloader();
 
 this.menu();
 
 this.slider();
+
+this.cursor();
+
+}
+
+aos(){
+
+if(typeof AOS==="undefined")return;
+
+AOS.init({
+duration:900,
+easing:"ease-out-cubic",
+once:true,
+offset:60
+});
+
+}
+
+cursor(){
+
+let isTouch=matchMedia("(hover:none),(pointer:coarse)").matches;
+
+let c1=$(".cursor"),c2=$(".cursor2");
+
+if(isTouch||!c1||!c2)return;
+
+document.body.classList.add("has-cursor");
+
+let x=0,y=0,x2=0,y2=0;
+
+addEventListener("mousemove",e=>{
+
+x=e.clientX;
+y=e.clientY;
+
+c1.style.transform=`translate(${x-7.5}px,${y-7.5}px)`;
+
+});
+
+const follow=()=>{
+
+x2+=(x-x2)*.15;
+y2+=(y-y2)*.15;
+
+c2.style.transform=`translate(${x2-22.5}px,${y2-22.5}px)`;
+
+requestAnimationFrame(follow);
+
+};
+
+follow();
 
 }
 
@@ -276,19 +331,22 @@ setTimeout(()=>p.remove(),700);
 });
 
 }
-    menu(){
+
+menu(){
 
 const btn=$(".menu-btn"),
-nav=$(".nav"),
-links=$$(".nav a");
+nav=$(".nav-menu"),
+links=$$(".nav-menu a");
 
-if(btn){
+if(btn&&nav){
 
 btn.onclick=()=>{
 
 nav.classList.toggle("active");
 
 btn.classList.toggle("open");
+
+document.body.classList.toggle("no-scroll");
 
 };
 
@@ -298,64 +356,38 @@ links.forEach(l=>{
 
 l.onclick=()=>{
 
-nav.classList.remove("active");
+if(nav)nav.classList.remove("active");
+
+if(btn)btn.classList.remove("open");
+
+document.body.classList.remove("no-scroll");
 
 };
 
 });
 
 }
-
-
 
 slider(){
 
-let slides=$$(".hero-slide"),
-dots=$$(".slider-dot"),
-i=0;
+if(typeof Swiper==="undefined")return;
 
-if(!slides.length)return;
+let el=$(".heroSwiper");
 
-let show=n=>{
+if(!el)return;
 
-slides.forEach((s,x)=>{
-
-s.classList.toggle("active",x===n);
-
-});
-
-dots.forEach((d,x)=>{
-
-d.classList.toggle("active",x===n);
-
-});
-
-};
-
-setInterval(()=>{
-
-i=(i+1)%slides.length;
-
-show(i);
-
-},5000);
-
-
-dots.forEach((d,x)=>{
-
-d.onclick=()=>{
-
-i=x;
-
-show(i);
-
-};
-
+new Swiper(".heroSwiper",{
+loop:true,
+speed:1200,
+effect:"fade",
+fadeEffect:{crossFade:true},
+autoplay:{
+delay:4500,
+disableOnInteraction:false
+}
 });
 
 }
-
-
 
 reveal(){
 
@@ -377,8 +409,6 @@ x.target.classList.add("show");
 els.forEach(e=>obs.observe(e));
 
 }
-
-
 
 counter(){
 
@@ -427,8 +457,6 @@ nums.forEach(n=>obs.observe(n));
 
 }
 
-
-
 smooth(){
 
 $$("a[href^='#']").forEach(a=>{
@@ -455,57 +483,38 @@ behavior:"smooth"
 
 }
 
-
-
 estimator(){
 
-let form=$("#estimate-form");
+let slider=$("#area-slider"),
+areaLabel=$("#area-value"),
+type=$("#construction-type"),
+priceOut=$("#total-price");
 
-if(!form)return;
+if(!slider||!type||!priceOut)return;
 
+let calc=()=>{
 
-form.onsubmit=e=>{
+let area=+slider.value||0;
 
-e.preventDefault();
-
-
-let area=+$("#area")?.value||0;
-
-let type=$("#type")?.value||"standard";
-
-let rate={
-
-standard:250,
-
-premium:450,
-
-luxury:800
-
-}[type];
-
+let rate=+type.value||3500;
 
 let result=area*rate;
 
+if(areaLabel)areaLabel.innerText=area.toLocaleString();
 
-let out=$("#estimate-result");
-
-
-if(out)
-
-out.innerHTML=
-
-`Estimated Cost <b>PKR ${result.toLocaleString()}</b>`;
-
+priceOut.innerText=result.toLocaleString();
 
 };
 
+slider.addEventListener("input",calc);
+
+type.addEventListener("change",calc);
+
+calc();
+
 }
 
-
-
 }
-
-
 
 class Crane{
 
@@ -518,8 +527,6 @@ this.hook=null;
 this.load();
 
 }
-
-
 
 load(){
 
@@ -545,7 +552,6 @@ beam.position.y=5;
 this.group.add(beam);
 
 
-
 let tower=new THREE.Mesh(
 
 new THREE.BoxGeometry(.25,6,.25),
@@ -557,7 +563,6 @@ yellow
 tower.position.y=2;
 
 this.group.add(tower);
-
 
 
 let cable=new THREE.Mesh(
@@ -578,7 +583,6 @@ cable.position.set(2.8,3.8,0);
 this.group.add(cable);
 
 
-
 this.hook=new THREE.Mesh(
 
 new THREE.TorusGeometry(.18,.04,12,30),
@@ -595,12 +599,9 @@ this.hook.position.set(2.8,2.8,0);
 this.group.add(this.hook);
 
 
-
 this.group.position.set(-3,0,-4);
 
 }
-
-
 
 update(t){
 
@@ -614,8 +615,6 @@ this.hook.position.y=
 
 }
 
-
-
 class Dust{
 
 constructor(scene){
@@ -626,8 +625,9 @@ let g=new THREE.BufferGeometry();
 
 let p=[];
 
+let count=(ENGINE&&ENGINE.mobile)?350:900;
 
-for(let i=0;i<900;i++){
+for(let i=0;i<count;i++){
 
 p.push(
 
@@ -670,8 +670,6 @@ scene.add(this.obj);
 
 }
 
-
-
 update(){
 
 this.obj.rotation.y+=.001;
@@ -680,32 +678,23 @@ this.obj.rotation.y+=.001;
 
 }
 
-
-
 let ENGINE,
 
 CRANE,
 
 DUST;
 
-
-
 function boot(){
 
 ENGINE=new Engine();
-
 
 CRANE=new Crane();
 
 ENGINE.s.add(CRANE.group);
 
-
 DUST=new Dust(ENGINE.s);
 
-
-
 let old=ENGINE.anim.bind(ENGINE);
-
 
 ENGINE.anim=function(){
 
@@ -719,11 +708,6 @@ DUST.update();
 
 };
 
-
-
-new UI();
-
-
 let ui=new UI();
 
 ui.reveal();
@@ -734,11 +718,7 @@ ui.smooth();
 
 ui.estimator();
 
-
-
 }
-
-
 
 document.addEventListener(
 
@@ -747,6 +727,5 @@ document.addEventListener(
 boot
 
 );
-
 
 })();
