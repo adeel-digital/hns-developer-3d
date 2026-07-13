@@ -1,144 +1,220 @@
-// ==========================================
-// 1. HIGH-PERFORMANCE 3D ENGINE (Optimized)
-// ==========================================
-const container = document.getElementById('canvas-wrapper');
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.z = 5;
+/**
+ * H&S Developer - Enterprise Frontend Architecture
+ * Developed by: Adbismarketinghub
+ * Standard: ES6+ Class Based Modules
+ */
 
-const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
-container.appendChild(renderer.domElement);
+class WebGLEngine {
+    constructor() {
+        this.container = document.getElementById('webgl-container');
+        this.scene = new THREE.Scene();
+        this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
+        this.init();
+    }
 
-const particlesGeometry = new THREE.BufferGeometry();
-const particlesCount = 1000;
-const posArray = new Float32Array(particlesCount * 3);
-for(let i = 0; i < particlesCount * 3; i++) {
-    posArray[i] = (Math.random() - 0.5) * 20;
-}
-particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-const particlesMaterial = new THREE.PointsMaterial({ size: 0.02, color: 0xff3333, transparent: true, opacity: 0.3 });
-const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-scene.add(particlesMesh);
+    init() {
+        this.camera.position.z = 8;
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        this.container.appendChild(this.renderer.domElement);
+        this.buildAbstractCore();
+        this.bindEvents();
+        this.animate();
+    }
 
-function animateCanvas() {
-    requestAnimationFrame(animateCanvas);
-    particlesMesh.rotation.y -= 0.0005; 
-    renderer.render(scene, camera);
-}
-animateCanvas();
-
-window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-});
-
-// ==========================================
-// 2. HERO IMAGE CAROUSEL
-// ==========================================
-const slides = document.querySelectorAll('.slide');
-let currentSlide = 0;
-setInterval(() => {
-    slides[currentSlide].classList.remove('active');
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classList.add('active');
-}, 5000);
-
-// ==========================================
-// 3. SCROLL REVEAL & SVG CIRCLE ANIMATION
-// ==========================================
-function revealElements() {
-    const reveals = document.querySelectorAll(".reveal");
-    reveals.forEach(reveal => {
-        const windowHeight = window.innerHeight;
-        const elementTop = reveal.getBoundingClientRect().top;
-        if (elementTop < windowHeight - 100) {
-            reveal.classList.add("active");
-            
-            // Trigger SVG Circle Animation if it's the milestones section
-            if(reveal.classList.contains('circles-container')) {
-                animateCircles();
-            }
-        }
-    });
-}
-window.addEventListener("scroll", revealElements);
-revealElements();
-
-let circlesAnimated = false;
-function animateCircles() {
-    if(circlesAnimated) return;
-    const circles = document.querySelectorAll('.svg-circle');
-    
-    circles.forEach(circle => {
-        const percent = circle.getAttribute('data-percent');
-        const progressCircle = circle.querySelector('.progress');
-        const textElement = circle.querySelector('.circle-text');
+    buildAbstractCore() {
+        // High-Density Particle Grid
+        const pGeo = new THREE.BufferGeometry();
+        const pCount = 2000;
+        const pPos = new Float32Array(pCount * 3);
+        for(let i = 0; i < pCount * 3; i++) pPos[i] = (Math.random() - 0.5) * 30;
+        pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
         
-        // 314 is the circumference of r=50 (2 * pi * 50)
-        const offset = 314 - (314 * percent) / 100;
-        progressCircle.style.strokeDashoffset = offset;
+        const pMat = new THREE.PointsMaterial({ 
+            size: 0.03, color: 0xff3333, transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending 
+        });
+        this.particles = new THREE.Points(pGeo, pMat);
+        this.scene.add(this.particles);
 
-        // Number counter logic for circles
-        let count = 0;
-        const speed = 20; 
-        const interval = setInterval(() => {
-            if(count >= percent) {
-                clearInterval(interval);
-            } else {
-                count++;
-                textElement.innerText = count + '%';
+        // Advanced Wireframe Construct
+        this.constructGroup = new THREE.Group();
+        
+        // Outer Geometry
+        const outerBox = new THREE.BoxGeometry(4, 4, 4);
+        const outerWire = new THREE.LineSegments(new THREE.EdgesGeometry(outerBox), new THREE.LineBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.5 }));
+        
+        // Inner Core (Complex)
+        const innerShape = new THREE.IcosahedronGeometry(2, 2);
+        const innerMesh = new THREE.Mesh(innerShape, new THREE.MeshBasicMaterial({ color: 0xdc2626, wireframe: true, transparent: true, opacity: 0.8 }));
+        
+        this.constructGroup.add(outerWire, innerMesh);
+        
+        // Placement based on device
+        this.updateConstructPosition();
+        this.scene.add(this.constructGroup);
+    }
+
+    updateConstructPosition() {
+        if(window.innerWidth < 992) this.constructGroup.position.set(0, 3, -4);
+        else this.constructGroup.position.set(4, 0, -2);
+    }
+
+    bindEvents() {
+        window.addEventListener('resize', () => {
+            this.camera.aspect = window.innerWidth / window.innerHeight;
+            this.camera.updateProjectionMatrix();
+            this.renderer.setSize(window.innerWidth, window.innerHeight);
+            this.updateConstructPosition();
+        });
+    }
+
+    animate() {
+        requestAnimationFrame(() => this.animate());
+        this.particles.rotation.y -= 0.0005;
+        this.constructGroup.rotation.x += 0.001;
+        this.constructGroup.rotation.y += 0.003;
+        this.constructGroup.children[1].rotation.z -= 0.002;
+        this.renderer.render(this.scene, this.camera);
+    }
+}
+
+class UIManager {
+    constructor() {
+        this.initMobileMenu();
+        this.initScrollReveal();
+        this.initMetricsObserver();
+        this.initPortfolioFilter();
+        this.initEstimator();
+    }
+
+    initMobileMenu() {
+        const toggle = document.getElementById('mobile-toggle');
+        const menu = document.getElementById('nav-menu');
+        const links = document.querySelectorAll('.nav-link');
+
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('is-active');
+            menu.classList.toggle('is-active');
+        });
+
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                toggle.classList.remove('is-active');
+                menu.classList.remove('is-active');
+            });
+        });
+    }
+
+    initScrollReveal() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+    }
+
+    initMetricsObserver() {
+        let animated = false;
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !animated) {
+                this.animateSVGProgress();
+                animated = true;
             }
-        }, speed);
-    });
-    circlesAnimated = true;
+        });
+        const metricsSection = document.getElementById('metrics');
+        if(metricsSection) observer.observe(metricsSection);
+    }
+
+    animateSVGProgress() {
+        const rings = document.querySelectorAll('.svg-progress');
+        rings.forEach(ring => {
+            const target = parseInt(ring.getAttribute('data-target'));
+            const circle = ring.querySelector('.bar');
+            const counter = ring.querySelector('.counter');
+            
+            // Calc offset based on 314 standard circumference
+            const offset = 314 - (314 * target) / 100;
+            setTimeout(() => circle.style.strokeDashoffset = offset, 200);
+
+            // Number Counter
+            let current = 0;
+            const timer = setInterval(() => {
+                if(current >= target) clearInterval(timer);
+                else { current++; counter.innerText = current; }
+            }, 25);
+        });
+    }
+
+    initPortfolioFilter() {
+        const buttons = document.querySelectorAll('.filter-btn');
+        const items = document.querySelectorAll('.portfolio-item');
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Active state toggle
+                buttons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Filter logic
+                const filter = btn.getAttribute('data-filter');
+                items.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                        setTimeout(() => item.style.opacity = '1', 50);
+                    } else {
+                        item.style.opacity = '0';
+                        setTimeout(() => item.style.display = 'none', 300);
+                    }
+                });
+            });
+        });
+    }
+
+    initEstimator() {
+        const areaSlider = document.getElementById('area-slider');
+        const areaDisp = document.getElementById('area-display');
+        const tierSel = document.getElementById('tier-select');
+        const addons = document.querySelectorAll('.custom-cb input');
+        
+        const uiBase = document.getElementById('base-cost');
+        const uiAddon = document.getElementById('addon-cost');
+        const uiTotal = document.getElementById('total-cost');
+
+        const calculate = () => {
+            const area = parseFloat(areaSlider.value);
+            const rate = parseFloat(tierSel.value);
+            
+            let addonTotal = 0;
+            addons.forEach(cb => { if(cb.checked) addonTotal += parseFloat(cb.getAttribute('data-cost')); });
+
+            const baseTotal = area * rate;
+            const finalTotal = baseTotal + addonTotal;
+
+            // DOM Updates
+            areaDisp.innerText = area;
+            uiBase.innerText = 'Rs. ' + baseTotal.toLocaleString('en-PK');
+            uiAddon.innerText = 'Rs. ' + addonTotal.toLocaleString('en-PK');
+            uiTotal.innerText = 'Rs. ' + finalTotal.toLocaleString('en-PK');
+        };
+
+        // Event Binding
+        areaSlider.addEventListener('input', calculate);
+        tierSel.addEventListener('change', calculate);
+        addons.forEach(cb => cb.addEventListener('change', calculate));
+        
+        // Initial Fire
+        calculate();
+    }
 }
 
-// ==========================================
-// 4. $500 ADVANCED ESTIMATOR ALGORITHM
-// ==========================================
-const areaSlider = document.getElementById('area-slider');
-const areaValDisplay = document.getElementById('area-val');
-const tierSelect = document.getElementById('tier-select');
-const addons = document.querySelectorAll('.custom-checkbox input');
-
-const recBase = document.getElementById('rec-base');
-const recAddons = document.getElementById('rec-addons');
-const recTotal = document.getElementById('rec-total');
-
-function calculateQuote() {
-    const area = parseFloat(areaSlider.value);
-    const rate = parseFloat(tierSelect.value);
-    
-    // Calculate Base
-    const baseCost = area * rate;
-    
-    // Calculate Addons
-    let addonCost = 0;
-    addons.forEach(box => {
-        if(box.checked) addonCost += parseFloat(box.value);
-    });
-
-    const totalCost = baseCost + addonCost;
-
-    // Update UI Elements
-    areaValDisplay.innerText = area;
-    recBase.innerText = 'Rs. ' + baseCost.toLocaleString('en-PK');
-    recAddons.innerText = 'Rs. ' + addonCost.toLocaleString('en-PK');
-    recTotal.innerText = 'Rs. ' + totalCost.toLocaleString('en-PK');
-}
-
-// Event Listeners for real-time calculation
-areaSlider.addEventListener('input', calculateQuote);
-tierSelect.addEventListener('change', calculateQuote);
-addons.forEach(box => box.addEventListener('change', calculateQuote));
-
-// Initial Calculation on Load
-calculateQuote();
-
-// Formal Quote Button
-document.getElementById('calc-btn').addEventListener('click', () => {
-    const finalAmt = document.getElementById('rec-total').innerText;
-    alert(`Formal Quote Generated for ${finalAmt}. Integration with Adbismarketinghub CRM pending.`);
+// Initialize Application Engine on DOM Load
+document.addEventListener('DOMContentLoaded', () => {
+    const webgl = new WebGLEngine();
+    const ui = new UIManager();
 });
