@@ -1,247 +1,243 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark-theme">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H&S Developer | High-Status Architecture</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="H&S Developer - High-Yield Commercial & Residential Architecture">
+    <title>H&S Developer | Advanced Structural Engineering</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body data-scroll-container>
 
-    <div id="canvas-wrapper"></div>
+    <div id="webgl-container" aria-hidden="true"></div>
 
-    <nav class="navbar glass-panel">
-        <div class="brand-container">
-            <img src="HS.jpg" alt="H&S Logo" class="brand-logo" onerror="this.src='https://via.placeholder.com/50'">
-            <div class="logo-text">H&S <span class="highlight">DEVELOPER</span></div>
+    <div class="top-bar">
+        <div class="top-bar__info">
+            <span><i class="fa-solid fa-clock"></i> Mon - Sat: 9:00 AM - 6:00 PM</span>
+            <span><i class="fa-solid fa-location-arrow"></i> Blue Area, Islamabad</span>
         </div>
-        <ul class="nav-links">
-            <li><a href="#milestones">Legacy</a></li>
-            <li><a href="#workflow">Process</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#estimator">Estimator</a></li>
-        </ul>
-        <a href="#estimator" class="cta-btn glass-btn">Get Quote</a>
+        <div class="top-bar__socials">
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+    </div>
+
+    <nav class="navbar glass-morph" id="main-nav">
+        <div class="nav-container">
+            <a href="#" class="brand">
+                <img src="HS.jpg" alt="H&S Developer" class="brand__logo">
+                <div class="brand__text">H&S <span class="accent-color">DEV</span></div>
+            </a>
+            
+            <button class="hamburger-menu" id="mobile-toggle" aria-expanded="false">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </button>
+
+            <ul class="nav-list" id="nav-menu">
+                <li class="nav-item"><a href="#hero" class="nav-link">Initiate</a></li>
+                <li class="nav-item"><a href="#metrics" class="nav-link">Metrics</a></li>
+                <li class="nav-item"><a href="#portfolio" class="nav-link">Masterpieces</a></li>
+                <li class="nav-item"><a href="#services" class="nav-link">Divisions</a></li>
+                <li class="nav-item"><a href="#estimator" class="nav-link">Algorithm</a></li>
+                <li class="nav-item"><a href="#contact" class="btn btn--primary nav-link">Secure Quote</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <section class="hero" id="home">
-        <div class="carousel-container">
-            <div class="slide active" style="background-image: url('crousal 1 .png');"></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1600607687931-cecebd803400?q=80&w=2000&auto=format&fit=crop');"></div>
-            <div class="carousel-overlay"></div>
+    <header class="hero" id="hero">
+        <div class="hero__slider" id="bg-slider">
+            </div>
+        <div class="hero__content glass-morph scroll-reveal">
+            <div class="badge badge--glow">Vanguard Architectural Systems</div>
+            <h1 class="hero__title">Engineer Your <br><span class="accent-color">Supremacy.</span></h1>
+            <p class="hero__subtitle">Deploying elite craftsmanship and automated structural workflows for global standards.</p>
+            <div class="hero__actions">
+                <a href="#estimator" class="btn btn--primary">Calculate ROI</a>
+                <a href="#portfolio" class="btn btn--outline">View Archive</a>
+            </div>
         </div>
-        <div class="hero-content glass-panel reveal-load">
-            <div class="badge">Advanced Structural Engineering</div>
-            <h1>Build Your <span class="highlight">Legacy.</span></h1>
-            <p>We execute automated construction workflows and high-yield architectural developments.</p>
+    </header>
+
+    <section class="metrics" id="metrics">
+        <div class="section-header scroll-reveal">
+            <h2 class="subtitle">Empirical Evidence</h2>
+            <h3 class="title">Celebrating Milestones, Building a Legacy</h3>
+        </div>
+        <div class="metrics__grid scroll-reveal">
+            <article class="metric-card">
+                <div class="svg-progress" data-target="95">
+                    <svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="50"/><circle class="bar" cx="60" cy="60" r="50"/></svg>
+                    <span class="counter">0</span><span class="symbol">%</span>
+                </div>
+                <h4 class="metric-card__title">Cost Efficiency</h4>
+            </article>
+            <article class="metric-card">
+                <div class="svg-progress" data-target="100">
+                    <svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="50"/><circle class="bar" cx="60" cy="60" r="50"/></svg>
+                    <span class="counter">0</span><span class="symbol">%</span>
+                </div>
+                <h4 class="metric-card__title">Timely Delivery</h4>
+            </article>
+            <article class="metric-card">
+                <div class="svg-progress" data-target="92">
+                    <svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="50"/><circle class="bar" cx="60" cy="60" r="50"/></svg>
+                    <span class="counter">0</span><span class="symbol">%</span>
+                </div>
+                <h4 class="metric-card__title">Tech Innovation</h4>
+            </article>
         </div>
     </section>
 
-    <section class="milestones-section" id="milestones">
-        <div class="section-header reveal">
-            <h2 class="highlight" style="font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px;">Achievement</h2>
-            <h2 style="font-size: 3rem; margin: 10px 0;">Celebrating Milestones, Building a Legacy</h2>
-            <p>At H&S Developer, we take pride in every project we deliver.<br>From residential homes to commercial structures, we set new benchmarks.</p>
+    <section class="portfolio" id="portfolio">
+        <div class="section-header scroll-reveal">
+            <h2 class="title">Architectural <span class="accent-color">Archive</span></h2>
         </div>
-        <div class="circles-container reveal">
-            <div class="circle-box">
-                <div class="svg-circle" data-percent="95">
-                    <svg><circle class="bg" cx="60" cy="60" r="50"></circle><circle class="progress" cx="60" cy="60" r="50"></circle></svg>
-                    <div class="circle-text">0%</div>
-                </div>
-                <h3>Cost<br>Efficiency</h3>
-            </div>
-            <div class="circle-box">
-                <div class="svg-circle" data-percent="100">
-                    <svg><circle class="bg" cx="60" cy="60" r="50"></circle><circle class="progress" cx="60" cy="60" r="50"></circle></svg>
-                    <div class="circle-text">0%</div>
-                </div>
-                <h3>Timely<br>Delivery</h3>
-            </div>
-            <div class="circle-box">
-                <div class="svg-circle" data-percent="90">
-                    <svg><circle class="bg" cx="60" cy="60" r="50"></circle><circle class="progress" cx="60" cy="60" r="50"></circle></svg>
-                    <div class="circle-text">0%</div>
-                </div>
-                <h3>Technological<br>Innovation</h3>
-            </div>
+        <div class="portfolio__filters scroll-reveal">
+            <button class="filter-btn active" data-filter="all">All Specs</button>
+            <button class="filter-btn" data-filter="commercial">Commercial</button>
+            <button class="filter-btn" data-filter="residential">Residential</button>
         </div>
-    </section>
-
-    <section class="workflow-section" id="workflow">
-        <div class="section-header reveal">
-            <h2>Our Development <span class="highlight">Workflow</span></h2>
-        </div>
-        <div class="workflow-grid reveal">
-            <div class="workflow-column left-col">
-                <div class="work-step">
-                    <div class="work-icon"><i class="fa-solid fa-building-user"></i></div>
-                    <div class="work-text">
-                        <h3>Consultation / Planning</h3>
-                        <p>Strategic development plans analyzing site conditions.</p>
-                    </div>
-                </div>
-                <div class="work-step">
-                    <div class="work-icon"><i class="fa-solid fa-pen-ruler"></i></div>
-                    <div class="work-text">
-                        <h3>Design & Architecture</h3>
-                        <p>Detailed structural layouts and modern engineering.</p>
-                    </div>
-                </div>
-                <div class="work-step">
-                    <div class="work-icon"><i class="fa-solid fa-cubes"></i></div>
-                    <div class="work-text">
-                        <h3>Material Selection</h3>
-                        <p>Sourcing high-quality materials for long-term durability.</p>
-                    </div>
+        <div class="portfolio__grid">
+            <div class="portfolio-item glass-morph scroll-reveal" data-category="commercial">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800" alt="Plaza" loading="lazy">
+                <div class="portfolio-item__overlay">
+                    <h4>Atrium Hills Plaza</h4>
+                    <a href="#" class="btn btn--small">Analyze Spec</a>
                 </div>
             </div>
-            
-            <div class="workflow-center">
-                <img src="https://images.unsplash.com/photo-1541888086925-0c13d4f47854?q=80&w=800&auto=format&fit=crop" alt="Engineer" class="engineer-img">
-            </div>
-
-            <div class="workflow-column right-col">
-                <div class="work-step reverse">
-                    <div class="work-text text-right">
-                        <h3>Construction / Assembly</h3>
-                        <p>Execution with strict quality control techniques.</p>
-                    </div>
-                    <div class="work-icon"><i class="fa-solid fa-helmet-safety"></i></div>
-                </div>
-                <div class="work-step reverse">
-                    <div class="work-text text-right">
-                        <h3>Finishing & Assurance</h3>
-                        <p>Inspecting every detail for superior aesthetics.</p>
-                    </div>
-                    <div class="work-icon"><i class="fa-solid fa-clipboard-check"></i></div>
-                </div>
-                <div class="work-step reverse">
-                    <div class="work-text text-right">
-                        <h3>Project Handover</h3>
-                        <p>Delivery to the client with full transparency.</p>
-                    </div>
-                    <div class="work-icon"><i class="fa-solid fa-handshake"></i></div>
+            <div class="portfolio-item glass-morph scroll-reveal" data-category="residential">
+                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800" alt="Villa" loading="lazy">
+                <div class="portfolio-item__overlay">
+                    <h4>DHA Phase 8 Villa</h4>
+                    <a href="#" class="btn btn--small">Analyze Spec</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="services-section" id="services">
-        <div class="section-header reveal">
-            <h2>Core <span class="highlight">Divisions</span></h2>
+    <section class="services" id="services">
+        <div class="section-header scroll-reveal">
+            <h2 class="title">Operational <span class="accent-color">Divisions</span></h2>
         </div>
-        <div class="premium-grid">
-            <div class="premium-card reveal">
-                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop');"></div>
-                <div class="card-header">
-                    <i class="fa-solid fa-trowel-bricks"></i>
-                    <h4>Residential Construction</h4>
-                </div>
-                <div class="card-overlay">
-                    <h3>Residential</h3>
-                    <p>Luxury villas, multi-family units, and smart homes engineered to perfection.</p>
-                    <button class="cta-btn glass-btn" style="padding: 8px 15px; margin-top:15px;">Explore</button>
-                </div>
-            </div>
-            <div class="premium-card reveal">
-                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop');"></div>
-                <div class="card-header">
+        <div class="services__grid">
+            <div class="service-card scroll-reveal">
+                <div class="service-card__bg" style="background-image: url('https://images.unsplash.com/photo-1541888086925-0c13d4f47854?q=80&w=800');"></div>
+                <div class="service-card__front">
                     <i class="fa-solid fa-city"></i>
-                    <h4>Commercial Construction</h4>
+                    <h3>Commercial Build</h3>
                 </div>
-                <div class="card-overlay">
+                <div class="service-card__back glass-morph">
                     <h3>Commercial</h3>
-                    <p>High-yield corporate plazas and retail spaces built for absolute scale.</p>
-                    <button class="cta-btn glass-btn" style="padding: 8px 15px; margin-top:15px;">Explore</button>
+                    <p>Executing high-yield structures requiring heavy machinery and precise tolerances.</p>
                 </div>
             </div>
-            <div class="premium-card reveal">
-                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1541888086925-0c13d4f47854?q=80&w=800&auto=format&fit=crop');"></div>
-                <div class="card-header">
-                    <i class="fa-solid fa-industry"></i>
-                    <h4>PEB Structures</h4>
-                </div>
-                <div class="card-overlay">
-                    <h3>PEB Structures</h3>
-                    <p>Pre-Engineered Buildings for factories and warehousing.</p>
-                    <button class="cta-btn glass-btn" style="padding: 8px 15px; margin-top:15px;">Explore</button>
-                </div>
-            </div>
-            <div class="premium-card reveal">
-                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800&auto=format&fit=crop');"></div>
-                <div class="card-header">
+             <div class="service-card scroll-reveal">
+                <div class="service-card__bg" style="background-image: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800');"></div>
+                <div class="service-card__front">
                     <i class="fa-solid fa-paint-roller"></i>
-                    <h4>Finishing Services</h4>
+                    <h3>Premium Finishing</h3>
                 </div>
-                <div class="card-overlay">
+                <div class="service-card__back glass-morph">
                     <h3>Finishing</h3>
-                    <p>Premium PU panels, MDF styling, and flawless architectural polish.</p>
-                    <button class="cta-btn glass-btn" style="padding: 8px 15px; margin-top:15px;">Explore</button>
+                    <p>Imported PU panels, structural glazing, and flawless MDF integration.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="estimator-section" id="estimator">
-        <div class="estimator-wrapper glass-panel reveal">
-            <div class="estimator-header">
-                <h2>Advanced <span class="highlight">Algorithmic</span> Estimator</h2>
-                <p>Generate a highly precise structural and financial projection.</p>
+    <section class="estimator" id="estimator">
+        <div class="estimator__container glass-morph scroll-reveal">
+            <div class="section-header">
+                <h2 class="title">Algorithmic <span class="accent-color">Projection</span></h2>
             </div>
-            
-            <div class="estimator-grid">
-                <div class="estimator-controls">
-                    <div class="form-group">
-                        <label>Covered Area: <span id="area-val" class="highlight">2500</span> Sq.Ft</label>
-                        <input type="range" id="area-slider" min="500" max="10000" step="100" value="2500" class="premium-slider">
+            <div class="estimator__layout">
+                <div class="estimator__inputs">
+                    <div class="form-control">
+                        <label>Structural Area (Sq.Ft): <span id="area-display" class="accent-color">2500</span></label>
+                        <input type="range" id="area-slider" class="custom-slider" min="500" max="10000" step="50" value="2500">
                     </div>
-                    
-                    <div class="form-group">
-                        <label>Base Structural Tier</label>
-                        <select id="tier-select" class="glass-input">
-                            <option value="3500">Standard Grey Structure (Rs. 3,500/sq.ft)</option>
-                            <option value="5500">Premium Grey Structure (Rs. 5,500/sq.ft)</option>
-                            <option value="8500">Turnkey Luxury Build (Rs. 8,500/sq.ft)</option>
+                    <div class="form-control">
+                        <label>Execution Tier</label>
+                        <select id="tier-select" class="custom-select">
+                            <option value="3500">Grey Structure Build - Rs. 3,500/sqft</option>
+                            <option value="5500">Standard Finishing - Rs. 5,500/sqft</option>
+                            <option value="8500">Turnkey Elite - Rs. 8,500/sqft</option>
                         </select>
                     </div>
-
-                    <div class="form-group">
-                        <label>Interior Aesthetic Finishes</label>
-                        <div class="toggle-group">
-                            <label class="custom-checkbox">
-                                <input type="checkbox" id="add-pu" value="800000"> 
-                                <span class="checkmark"></span> PU Panels & MDF Styling
-                            </label>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" id="add-smart" value="1500000"> 
-                                <span class="checkmark"></span> Smart Home Automation
-                            </label>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" id="add-solar" value="1200000"> 
-                                <span class="checkmark"></span> 10kW Solar Grid
-                            </label>
+                    <div class="form-control">
+                        <label>Technological Integrations</label>
+                        <div class="checkbox-wrapper">
+                            <label class="custom-cb"><input type="checkbox" data-cost="1500000"><span class="box"></span> Smart Home OS</label>
+                            <label class="custom-cb"><input type="checkbox" data-cost="1200000"><span class="box"></span> 10kW Solar Array</label>
+                            <label class="custom-cb"><input type="checkbox" data-cost="800000"><span class="box"></span> Imported PU Styling</label>
                         </div>
                     </div>
                 </div>
-
-                <div class="receipt-box">
-                    <h3>Projected Analysis</h3>
+                <div class="estimator__receipt">
+                    <h3>Fiscal Analysis</h3>
+                    <div class="receipt-row"><span>Base Capital:</span> <span id="base-cost">Rs. 0</span></div>
+                    <div class="receipt-row"><span>Integrations:</span> <span id="addon-cost">Rs. 0</span></div>
                     <hr>
-                    <div class="receipt-row"><span>Base Construction:</span> <span id="rec-base">Rs. 0</span></div>
-                    <div class="receipt-row"><span>Finishing & Add-ons:</span> <span id="rec-addons">Rs. 0</span></div>
-                    <hr>
-                    <div class="receipt-total"><span>Total Capital:</span> <span id="rec-total" class="highlight">Rs. 0</span></div>
-                    <button id="calc-btn" class="cta-btn glass-btn block-btn" style="margin-top:20px;">Generate Formal Quote</button>
+                    <div class="receipt-row total"><span>Total Required:</span> <span id="total-cost" class="accent-color">Rs. 0</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="footer glass-panel">
-        <p>&copy; 2026 Engineered by Adbismarketinghub for H&S Developer.</p>
+    <section class="contact" id="contact">
+        <div class="contact__grid glass-morph scroll-reveal">
+            <div class="contact__info">
+                <h2 class="title">Initialize <span class="accent-color">Deployment</span></h2>
+                <p>Submit your architectural parameters. Our engineering board will analyze the specs within 24 hours.</p>
+                <ul class="contact-list">
+                    <li><i class="fa-solid fa-phone"></i> +92 302 511 3791</li>
+                    <li><i class="fa-solid fa-envelope"></i> info@hnsdeveloper.com</li>
+                    <li><i class="fa-solid fa-location-dot"></i> Islamabad, PK</li>
+                </ul>
+            </div>
+            <form action="https://formsubmit.co/info@hnsdeveloper.com" method="POST" class="contact__form" id="secure-form">
+                <input type="hidden" name="_captcha" value="false">
+                <div class="input-group">
+                    <input type="text" name="Client Name" required placeholder=" ">
+                    <label>Principal Name</label>
+                </div>
+                <div class="input-group">
+                    <input type="tel" name="Contact" required placeholder=" ">
+                    <label>Secure Number</label>
+                </div>
+                <div class="input-group">
+                    <select name="Directive" required>
+                        <option value="" disabled selected>Select Primary Directive</option>
+                        <option value="Commercial">Commercial Execution</option>
+                        <option value="Residential">Elite Residential</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <textarea name="Specs" required placeholder=" " rows="4"></textarea>
+                    <label>Structural Vision / Plot Coordinates</label>
+                </div>
+                <button type="submit" class="btn btn--primary btn--block">Transmit Data</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="site-footer glass-morph">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>H&S Developer</h4>
+                <p>Architecting the future through automated systems and high-status engineering.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Developed by Adbismarketinghub. All Rights Reserved.</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>
